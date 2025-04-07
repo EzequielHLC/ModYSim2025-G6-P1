@@ -25,6 +25,6 @@ Editor: ..........
 
 
 ## 🧠 Algoritmos implementados
-Métodos:  Von Neumann + Método de las Congruencias
+Métodos:  Von Neumann + Método mixto de Congruencias
 
 ## 📂 Estructura del proyecto

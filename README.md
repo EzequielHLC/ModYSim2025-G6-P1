@@ -19,9 +19,10 @@ Comparar el rendimiento y distribución de diferentes algoritmos.
 Aplicar los generadores en simulaciones o aplicaciones prácticas.
 
 ## ⚙️ Tecnologías y Lenguaje
-Lenguaje de programación: .........
-Herramientas: GitLab, Github
-Editor: ..........
+Lenguaje de programación: Python.
+Herramientas: GitLab, Github, PGAdmin4.
+Editor: Visual Studio Code.
+Motor de base de datos: PostgreSQL.
 
 
 ## 🧠 Algoritmos implementados

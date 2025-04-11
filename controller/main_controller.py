@@ -1,10 +1,10 @@
-# from model.database import Database  # Descomentar si se usa la base de datos
+from model.database import Database  # Descomentar si se usa la base de datos
 from view.main_view import MainView
 import math # Importar la función gcd para calcular el máximo común divisor
 
 class MainController:
     def __init__(self):
-        #self.model = Database()
+        self.model = Database()
         self.view = MainView(self)  # Inicializa la vista principal
         self.von_neumann_view = self.view.von_neumann_view  # Vista Von Neumann
         self.mixed_congruence_view = self.view.mixed_congruence_view  # Vista Congruencias Mixtas

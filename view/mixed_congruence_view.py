@@ -42,14 +42,31 @@ class MixedCongruenceView:
         if hasattr(self.controller, 'on_generate_mixed'):
             self.generate_button.config(command=self.controller.on_generate_mixed)
         self.generate_button.pack(anchor="center", pady=20)
+        self._add_test_type_selection(self.left_frame)
+
+    def _add_test_type_selection(self, frame):
+        tk.Label(frame, text="Tipo de Prueba", bg=self.BG_COLOR, font=self.FONT_BOLD).pack(anchor="w", pady=(10, 0))
+        
+        self.test_type = tk.StringVar(value="Chi Cuadrado")  # Valor predeterminado
+        chi_radio = tk.Radiobutton(frame, text="Chi Cuadrado", variable=self.test_type, value="Chi Cuadrado", bg=self.BG_COLOR, font=self.FONT_NORMAL)
+        rachas_radio = tk.Radiobutton(frame, text="Rachas", variable=self.test_type, value="Rachas", bg=self.BG_COLOR, font=self.FONT_NORMAL)
+        
+        chi_radio.pack(anchor="w")
+        rachas_radio.pack(anchor="w")
+
+        # Botón para ejecutar la prueba
+        self.run_test_button = tk.Button(frame, text="Ejecutar Prueba", bg="#DCDCDC")
+        if hasattr(self.controller, 'on_run_test'):
+            self.run_test_button.config(command=self.controller.on_run_test)
+        self.run_test_button.pack(anchor="center", pady=20)
 
     def _create_right_frame(self):
         self.right_frame = tk.Frame(self.frame, bg=self.BG_COLOR)
         self.right_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=20, pady=20)
 
         self._create_label(self.right_frame, "Lista de Números Generados", self.FONT_BOLD).pack(anchor="nw")
-        self.results_text = tk.Text(self.right_frame, height=self.TEXTBOX_HEIGHT, width=self.TEXTBOX_WIDTH, wrap="word", state=tk.DISABLED)
-        self.results_text.pack(fill=tk.BOTH, expand=True, pady=(10, 0))
+        self.result_textbox = tk.Text(self.right_frame, height=self.TEXTBOX_HEIGHT, width=self.TEXTBOX_WIDTH, wrap="word", state=tk.DISABLED)
+        self.result_textbox.pack(fill=tk.BOTH, expand=True, pady=(10, 0))
 
     def _create_label(self, parent, text, font):
         return tk.Label(parent, text=text, bg=self.BG_COLOR, font=font)

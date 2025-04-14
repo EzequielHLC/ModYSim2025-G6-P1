@@ -9,7 +9,7 @@ class MainView:
         self.controller = controller
         self.root = tk.Tk()
         self.root.title("Programa - Generadores de Números Aleatorios")
-        self.root.geometry("900x500")
+        self.root.geometry("900x600")
 
         # Se usa el widget "Notebook" para la navegación por pestañas
         self.notebook = ttk.Notebook(self.root)

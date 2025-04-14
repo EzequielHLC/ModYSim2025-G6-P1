@@ -100,7 +100,7 @@ class TestMainController(unittest.TestCase):
             + "A: Debe ser un entero impar, no divisible por 3 o 5.\n"
             + "C: Debe ser un entero impar, relativamente primo a M.\n"
             + "M: Debe ser un entero positivo, mayor que A y mayor que la Semilla.",
-            self.controller.mixed_congruence_view.results_text
+            self.controller.mixed_congruence_view.result_textbox
         )
 
 if __name__ == "__main__":

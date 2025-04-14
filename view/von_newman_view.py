@@ -30,6 +30,7 @@ class VonNeumannView:
         self._add_seed_input(left_frame)
         self._add_digits_input(left_frame)
         self._add_generate_button(left_frame)
+        self._add_test_type_selection(left_frame)
 
         return left_frame
 
@@ -53,6 +54,23 @@ class VonNeumannView:
             self.generate_button.config(command=self.controller.on_generate_von_neumann)
         self.generate_button.pack(anchor="center", pady=20)
 
+    # Opciones de selección para el tipo de prueba
+    def _add_test_type_selection(self, frame):
+        tk.Label(frame, text="Tipo de Prueba", bg=self.BG_COLOR, font=self.FONT_BOLD).pack(anchor="w", pady=(10, 0))
+        
+        self.test_type = tk.StringVar(value="Chi Cuadrado")  # Valor predeterminado
+        self.chi_radio = tk.Radiobutton(frame, text="Chi Cuadrado", variable=self.test_type, value="Chi Cuadrado", bg=self.BG_COLOR, font=self.FONT_NORMAL, anchor="w")
+        self.rachas_radio = tk.Radiobutton(frame, text="Rachas", variable=self.test_type, value="Rachas", bg=self.BG_COLOR, font=self.FONT_NORMAL, anchor="w")
+        
+        self.chi_radio.pack(anchor="w")
+        self.rachas_radio.pack(anchor="w")
+
+        # Botón para ejecutar la prueba
+        self.run_test_button = tk.Button(frame, text="Ejecutar Prueba", bg="#DCDCDC")
+        if hasattr(self.controller, 'on_run_test'):
+            self.run_test_button.config(command=lambda: self.controller.on_run_test(self))
+        self.run_test_button.pack(anchor="center", pady=20)
+
     # Caja de texto para mostrar los números generados
     # La caja de texto se desactiva para evitar que el usuario la edite directamente
     def _create_right_frame(self):
@@ -64,4 +82,3 @@ class VonNeumannView:
         self.result_textbox.pack(fill=tk.BOTH, expand=True, pady=(10, 0))
 
         return right_frame
-    

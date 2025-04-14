@@ -1,17 +1,19 @@
 from model.database import Database  # Descomentar si se usa la base de datos
 from view.main_view import MainView
+from view.message_box import MessageBox
 import math # Importar la función gcd para calcular el máximo común divisor
 
 class MainController:
     def __init__(self):
-        self.model = Database()
+        # self.model = Database()
         self.view = MainView(self)  # Inicializa la vista principal
         self.von_neumann_view = self.view.von_neumann_view  # Vista Von Neumann
         self.mixed_congruence_view = self.view.mixed_congruence_view  # Vista Congruencias Mixtas
     
     def run(self):
+        #if self.model.connection is None:
+            # Si la conexión a la base de datos es exitosa, se inicia la vista
         self.view.run()
-
 
 
     def error_message(self, message, textbox=None):
@@ -85,7 +87,6 @@ class MainController:
             seed = mid_digits  # Actualizar la semilla para la siguiente iteración
         return random_numbers  # Retornar la lista de números generados
 
-
     def mixed_congruence(self, seed, a, m, c, n_digits):
         # Método para generar números aleatorios usando el método de Congruencias Mixtas
         random_numbers = []  # Lista para almacenar los números aleatorios generados
@@ -94,6 +95,41 @@ class MainController:
             seed = (a * seed + c) % m  # Aplicar la fórmula de congruencia mixta
             random_numbers.append(seed)  # Agregar el número generado a la lista
         return random_numbers  # Retornar la lista de números generados
+
+    def run_chi_square_test(self, view):
+        # Obtener los números generados desde la vista
+        numbers = view.result_textbox.get("1.0", "end-1c").split(",")
+        numbers = [int(num.strip()) for num in numbers if num.strip().isdigit()]
+        if len(numbers) == 0:
+            MessageBox.show_error("Error", "No se han generado números válidos para realizar la prueba.")
+            return
+        
+        # Calcular la frecuencia esperada
+        expected_freq = len(numbers) / 10  # Frecuencia esperada para cada dígito (0-9)
+
+        for i in range(len(numbers)):
+            numbers[i] = int(numbers[i]) % 10
+        # Calcular la frecuencia observada
+        observed_freq = [0] * 10
+        for num in numbers:
+            observed_freq[num] += 1
+        
+        # Calcular el estadístico de Chi Cuadrado
+        chi_square_statistic = sum((obs - expected_freq) ** 2 / expected_freq for obs in observed_freq)
+
+        # Grados de libertad
+        degrees_of_freedom = len(observed_freq) - 1
+        #valor crítico para el nivel de significancia del 5%
+        critical_value = 16.919  # Valor crítico para Chi Cuadrado con 9 grados de libertad y alpha = 0.05
+        # Comparar el estadístico con el valor crítico
+        if chi_square_statistic < critical_value:
+            result = True
+        else:
+            result = False
+        return result  # Retornar el resultado de la prueba
+        
+
+    
 
     def on_generate_von_neumann(self):
         # Obtener la semilla y la cantidad de dígitos desde la vista
@@ -127,17 +163,31 @@ class MainController:
         if not self.validate_mixed_parameters(seed, a, m, c):
             self.error_message("Error: Los parámetros A, M y C deben seguir las siguientes reglas:\n" + "A: Debe ser un entero impar, no divisible por 3 o 5.\n" + 
                                "C: Debe ser un entero impar, relativamente primo a M.\n" + 
-                               "M: Debe ser un entero positivo, mayor que A y mayor que la Semilla.", self.mixed_congruence_view.results_text)
+                               "M: Debe ser un entero positivo, mayor que A y mayor que la Semilla.", self.mixed_congruence_view.result_textbox)
             return
         if not self.validate_digits(self.mixed_congruence_view.quantity_entry.get()):
-            self.error_message("Error: La cantidad de dígitos debe ser un número entero positivo menor a 10000.", self.mixed_congruence_view.results_text)
+            self.error_message("Error: La cantidad de dígitos debe ser un número entero positivo menor a 10000.", self.mixed_congruence_view.result_textbox)
             return
         
         # Llamar al método de la vista para generar números aleatorios (No suele llegar a ejecutarse por la generacion tan rapida)
-        self.loading(self.mixed_congruence_view.results_text)
+        self.loading(self.mixed_congruence_view.result_textbox)
         self.mixed_congruence_view.generate_button.config(state="disabled")
 
         # Aquí se llamaría al método de la base de datos para generar los números aleatorios
         random_numbers = self.mixed_congruence(int(seed), int(a), int(m), int(c), int(self.mixed_congruence_view.quantity_entry.get()))
-        self.paste_result(random_numbers, self.mixed_congruence_view.results_text)
+        self.paste_result(random_numbers, self.mixed_congruence_view.result_textbox)
         self.mixed_congruence_view.generate_button.config(state="normal")
+
+    def on_run_test(self, view):
+        # Obtener el tipo de prueba seleccionada
+        test_type = view.test_type.get()
+        if test_type == "Chi Cuadrado":
+            result = self.run_chi_square_test(view)
+            if result == True:
+                MessageBox.show_info("Resultado", "La prueba Chi Cuadrado ha pasado.")
+                view.chi_radio.config(fg="green")
+            if result == False:
+                MessageBox.show_error("Resultado", "La prueba Chi Cuadrado no ha pasado.")
+                view.chi_radio.config(fg="black")
+        elif test_type == "Rachas":
+            self.run_runs_test(view)

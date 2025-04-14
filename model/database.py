@@ -1,4 +1,5 @@
-import psycopg2 # type: ignore
+import psycopg2
+from view import message_box
 
 class Database:
     def __init__(self):
@@ -10,8 +11,7 @@ class Database:
             user="postgres",
             password="magna"
             )
-            print("Conexión exitosa a la base de datos")
         except Exception as e:
-            print("Error al conectar a la base de datos:", e)
+            message_box.MessageBox.show_error("Error de conexión", f"No se pudo conectar a la base de datos: {e}")
             self.connection = None
         self.cursor = self.connection.cursor() if self.connection else None

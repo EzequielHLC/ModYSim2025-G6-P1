@@ -1,6 +1,10 @@
 import tkinter as tk
 
 class VonNeumannView:
+    # Esta clase define la vista para el generador de números aleatorios de Von Neumann.
+    # Defino las constantes para los colores y fuentes que se utilizarán en la interfaz gráfica.
+    # Estas constantes se utilizan para mantener la consistencia en el diseño de la interfaz.
+    # Me ahorro codigo al definirlas aquí y no repetirlas en cada widget.
     BG_COLOR = "#ECECEC"
     FONT_BOLD = ("Arial", 10, "bold")
     FONT_NORMAL = ("Arial", 8)
@@ -29,23 +33,28 @@ class VonNeumannView:
 
         return left_frame
 
+    # Entrada para la semilla
     def _add_seed_input(self, frame):
         tk.Label(frame, text="Semilla", bg=self.BG_COLOR, font=self.FONT_BOLD).pack(anchor="w")
         tk.Label(frame, text="(La semilla debe tener 4 dígitos)", bg=self.BG_COLOR, font=self.FONT_NORMAL).pack(anchor="w")
         self.seed_entry = tk.Entry(frame, width=self.ENTRY_WIDTH)
         self.seed_entry.pack(anchor="w", pady=5)
 
+    # Entrada para la cantidad de números a generar
     def _add_digits_input(self, frame):
         tk.Label(frame, text="Números a generar", bg=self.BG_COLOR, font=self.FONT_BOLD).pack(anchor="w", pady=(10, 0))
         self.digits_entry = tk.Entry(frame, width=self.ENTRY_WIDTH)
         self.digits_entry.pack(anchor="w", pady=5)
 
+    # Botón para generar números. Llama al método de la clase controladora
     def _add_generate_button(self, frame):
         self.generate_button = tk.Button(frame, text="Generar", bg="#DCDCDC")
         if hasattr(self.controller, 'on_generate_von_neumann'):
             self.generate_button.config(command=self.controller.on_generate_von_neumann)
         self.generate_button.pack(anchor="center", pady=20)
 
+    # Caja de texto para mostrar los números generados
+    # La caja de texto se desactiva para evitar que el usuario la edite directamente
     def _create_right_frame(self):
         right_frame = tk.Frame(self.frame, bg=self.BG_COLOR)
         right_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=20, pady=20)
@@ -55,3 +64,4 @@ class VonNeumannView:
         self.result_textbox.pack(fill=tk.BOTH, expand=True, pady=(10, 0))
 
         return right_frame
+    

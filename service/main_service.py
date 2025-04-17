@@ -7,9 +7,7 @@ class MainService:
     @staticmethod
     def save_von_neuman_result(db_connection, seed, chi_result, rachas_result, random_numbers):
         query = """
-        INSERT INTO vn_results (seed, chi_square_result, rachas_result, random_numbers)
-        VALUES (%s, %s, %s, %s)
-        """
+        INSERT INTO vn_results (seed, chi_square_result, rachas_result, random_numbers) VALUES (%s, %s, %s, %s)""".strip()
         cursor = db_connection.cursor()
         cursor.execute(query, (seed, chi_result, rachas_result, ",".join(map(str, random_numbers))))
         db_connection.commit()
@@ -19,9 +17,7 @@ class MainService:
     @staticmethod
     def save_mixed_congruence_result(db_connection, seed, a, m, c, chi_result, rachas_result, random_numbers):
         query = """
-        INSERT INTO mixed_congruence_results (seed, a, m, c, chi_square_result, rachas_result, random_numbers)
-        VALUES (%s, %s, %s, %s, %s, %s, %s)
-        """
+        INSERT INTO mixed_congruence_results (seed, a, m, c, chi_square_result, rachas_result, random_numbers) VALUES (%s, %s, %s, %s, %s, %s, %s)""".strip()
         cursor = db_connection.cursor()
         cursor.execute(query, (seed, a, m, c, chi_result, rachas_result, ",".join(map(str, random_numbers))))
         db_connection.commit()

@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-from view.von_newman_view import VonNeumannView
+from view.von_neuman_view import VonNeumannView
 from view.mixed_congruence_view import MixedCongruenceView
 
 class MainView:
@@ -9,7 +9,7 @@ class MainView:
         self.controller = controller
         self.root = tk.Tk()
         self.root.title("Programa - Generadores de Números Aleatorios")
-        self.root.geometry("900x600")
+        self.root.geometry("900x800")
 
         # Se usa el widget "Notebook" para la navegación por pestañas
         self.notebook = ttk.Notebook(self.root)

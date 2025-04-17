@@ -40,8 +40,8 @@ class TestMainController(unittest.TestCase):
     def setUp(self):
         self.controller = MainController()
         self.controller.view = MagicMock()
-        self.controller.von_neumann_view = MagicMock()
-        self.controller.mixed_congruence_view = MagicMock()
+        self.controller.vn_view = MagicMock()
+        self.controller.mxc_view = MagicMock()
 
     def test_validate_seed_vn_valid(self):
         self.assertTrue(self.controller.validate_seed_vn("1234"))
@@ -79,20 +79,20 @@ class TestMainController(unittest.TestCase):
         self.assertEqual(len(result), 5)
 
     def test_on_generate_von_neumann_invalid_seed(self):
-        self.controller.von_neumann_view.seed_entry.get.return_value = "123"
-        self.controller.von_neumann_view.digits_entry.get.return_value = "5"
+        self.controller.vn_view.seed_entry.get.return_value = "123"
+        self.controller.vn_view.digits_entry.get.return_value = "5"
         self.controller.error_message = MagicMock()
         self.controller.on_generate_von_neumann()
         self.controller.error_message.assert_called_with(
             "Error: La semilla debe tener exactamente 4 dígitos.",
-            self.controller.von_neumann_view.result_textbox
+            self.controller.vn_view.result_textbox
         )
 
     def test_on_generate_mixed_invalid_parameters(self):
-        self.controller.mixed_congruence_view.seed_entry.get.return_value = "0"
-        self.controller.mixed_congruence_view.a_entry.get.return_value = "6"
-        self.controller.mixed_congruence_view.m_entry.get.return_value = "5"
-        self.controller.mixed_congruence_view.c_entry.get.return_value = "2"
+        self.controller.mxc_view.seed_entry.get.return_value = "0"
+        self.controller.mxc_view.a_entry.get.return_value = "6"
+        self.controller.mxc_view.m_entry.get.return_value = "5"
+        self.controller.mxc_view.c_entry.get.return_value = "2"
         self.controller.error_message = MagicMock()
         self.controller.on_generate_mixed()
         self.controller.error_message.assert_called_with(
@@ -100,7 +100,7 @@ class TestMainController(unittest.TestCase):
             + "A: Debe ser un entero impar, no divisible por 3 o 5.\n"
             + "C: Debe ser un entero impar, relativamente primo a M.\n"
             + "M: Debe ser un entero positivo, mayor que A y mayor que la Semilla.",
-            self.controller.mixed_congruence_view.result_textbox
+            self.controller.mxc_view.result_textbox
         )
 
 if __name__ == "__main__":

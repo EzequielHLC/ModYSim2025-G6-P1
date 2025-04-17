@@ -1,7 +1,31 @@
 from view.message_box import MessageBox
+from model.database import Database
 import math
 
 class MainService:
+
+    @staticmethod
+    def save_von_neuman_result(db_connection, seed, chi_result, rachas_result, random_numbers):
+        query = """
+        INSERT INTO vn_results (seed, chi_square_result, rachas_result, random_numbers)
+        VALUES (%s, %s, %s, %s)
+        """
+        cursor = db_connection.cursor()
+        cursor.execute(query, (seed, chi_result, rachas_result, ",".join(map(str, random_numbers))))
+        db_connection.commit()
+        return True
+
+    
+    @staticmethod
+    def save_mixed_congruence_result(db_connection, seed, a, m, c, chi_result, rachas_result, random_numbers):
+        query = """
+        INSERT INTO mixed_congruence_results (seed, a, m, c, chi_square_result, rachas_result, random_numbers)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """
+        cursor = db_connection.cursor()
+        cursor.execute(query, (seed, a, m, c, chi_result, rachas_result, ",".join(map(str, random_numbers))))
+        db_connection.commit()
+        return True
 
     def error_message(message, textbox):
     # Método para mostrar mensajes de error en la vista

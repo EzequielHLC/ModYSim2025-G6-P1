@@ -1,4 +1,4 @@
-# from model.database import Database  # Descomentar si se usa la base de datos
+from model.database import Database  # Descomentar si se usa la base de datos
 
 from service.main_service import MainService  # Importar el servicio principal
 from service.von_neuman_service import VonNeumanService  # Importar el servicio de Von Neumann
@@ -10,7 +10,7 @@ import math # Importar la función gcd para calcular el máximo común divisor
 
 class MainController:
     def __init__(self):
-        # self.model = Database()
+        self.model = Database()
         self.view = MainView(self)  # Inicializa la vista principal
         self.vn_view = self.view.von_neumann_view  # Vista Von Neumann
         self.mxc_view = self.view.mixed_congruence_view  # Vista Congruencias Mixtas
@@ -18,17 +18,25 @@ class MainController:
         self.main_service = MainService # Inicializa el servicio principal
         self.vn_service = VonNeumanService  # Inicializa el servicio de Von Neumann
         self.mxc_service = MixedCongruenceService  # Inicializa el servicio de Congruencias Mixtas
+
+        self.vn_chi_test = False
+        self.vn_rachas_test = False
+        self.mxc_chi_test = False
+        self.mxc_rachas_test = False
     
     def run(self):
-        #if self.model.connection is None:
+        if not self.model.connection is None:
             # Si la conexión a la base de datos es exitosa, se inicia la vista
-        self.view.run()
+            self.view.run()
 
 
     def on_generate_von_neumann(self): #REFACTORIZADO 
         # Obtener la semilla y la cantidad de dígitos desde la vista
         seed = self.vn_view.seed_entry.get()
         n_digits = self.vn_view.digits_entry.get()
+        self.vn_view.save_button.config(state="disabled")  # Deshabilitar el botón de guardar
+        self.vn_chi_test = False  # Reiniciar la prueba de Chi Cuadrado
+        self.vn_rachas_test = False  # Reiniciar la prueba de Rachas
 
         # Validar la semilla y la cantidad de dígitos
         if not self.vn_service.validate_seed_vn(seed):
@@ -52,10 +60,13 @@ class MainController:
 
     def on_generate_mixed(self): #REFACTORIZADO
         # Obtener la semilla y los parámetros desde la vista
+        self.mxc_view.save_button.config(state="disabled")  # Deshabilitar el botón de guardar
         seed = self.mxc_view.seed_entry.get()
         a = self.mxc_view.a_entry.get()
         m = self.mxc_view.m_entry.get()
         c = self.mxc_view.c_entry.get()
+        self.mxc_chi_test = False  # Reiniciar la prueba de Chi Cuadrado
+        self.mxc_rachas_test = False  # Reiniciar la prueba de Rachas
 
         if not self.mxc_service.validate_mixed_parameters(seed, a, m, c):
             self.main_service.error_message("Error: Los parámetros A, M y C deben seguir las siguientes reglas:\n" + "A: Debe ser un entero impar, no divisible por 3 o 5.\n" + 
@@ -89,16 +100,20 @@ class MainController:
                 if result:
                     MessageBox.show_info("Resultado", "La prueba Chi Cuadrado ha pasado.")
                     view.chi_radio.config(fg="green")
+                    self.vn_chi_test = True
+                    self.vn_view.save_button.config(state="normal")  # Habilitar el botón de guardar
                 elif result == False:
                     MessageBox.show_error("Resultado", "La prueba Chi Cuadrado no ha pasado.")
                     view.chi_radio.config(fg="red")
             case "Rachas":
                 result = self.main_service.run_rachas_test(view.result_textbox, view.test_result_textbox)
                 if result:
-                    MessageBox.show_info("Resultado", "La prueba Chi Cuadrado ha pasado.")
+                    MessageBox.show_info("Resultado", "La prueba de Racahas ha pasado.")
                     view.rachas_radio.config(fg="green")
+                    self.vn_rachas_test = True
+                    self.vn_view.save_button.config(state="normal")  # Habilitar el botón de guardar
                 elif result == False:
-                    MessageBox.show_error("Resultado", "La prueba Chi Cuadrado no ha pasado.")
+                    MessageBox.show_error("Resultado", "La prueba de Racahas no ha pasado.")
                     view.rachas_radio.config(fg="red")
 
     def on_test_mixed(self): #REFACTORIZADO
@@ -111,14 +126,42 @@ class MainController:
                 if result:
                     MessageBox.show_info("Resultado", "La prueba Chi Cuadrado ha pasado.")
                     view.chi_radio.config(fg="green")
+                    self.mxc_chi_test = True
+                    self.mxc_view.save_button.config(state="normal")
                 elif result == False:
                     MessageBox.show_error("Resultado", "La prueba Chi Cuadrado no ha pasado.")
                     view.chi_radio.config(fg="red")
             case "Rachas":
                 result = self.main_service.run_rachas_test(view.result_textbox, view.test_result_textbox)
                 if result:
-                    MessageBox.show_info("Resultado", "La prueba Chi Cuadrado ha pasado.")
+                    MessageBox.show_info("Resultado", "La prueba de Racahas ha pasado.")
                     view.rachas_radio.config(fg="green")
+                    self.mxc_rachas_test = True
+                    self.mxc_view.save_button.config(state="normal")
                 elif result == False:
-                    MessageBox.show_error("Resultado", "La prueba Chi Cuadrado no ha pasado.")
+                    MessageBox.show_error("Resultado", "La prueba de Racahas no ha pasado.")
                     view.rachas_radio.config(fg="red")
+
+
+    def on_save_results_vn(self): 
+        # Obtener la semilla y la cantidad de dígitos desde la vista
+        seed = self.vn_view.seed_entry.get()
+        n_digits = self.vn_view.digits_entry.get()
+        
+        # Llamar al método de la vista para generar números aleatorios (No suele llegar a ejecutarse por la generacion tan rapida)
+        if self.main_service.save_von_neuman_result(self.model.connection, seed, self.vn_chi_test, self.vn_rachas_test, self.vn_view.result_textbox.get("1.0", "end-1c").split(",")):
+            MessageBox.show_info("Guardado", "Resultados guardados en la base de datos.")
+        else:
+            MessageBox.show_error("Error", "No se pudieron guardar los resultados en la base de datos.")
+    
+    def on_save_results_mixed(self): 
+        # Obtener la semilla y los parámetros desde la vista
+        seed = self.mxc_view.seed_entry.get()
+        a = self.mxc_view.a_entry.get()
+        m = self.mxc_view.m_entry.get()
+        c = self.mxc_view.c_entry.get()
+
+        if self.main_service.save_mixed_congruence_result(self.model.connection, seed, a, m, c, self.mxc_chi_test, self.mxc_rachas_test, self.mxc_view.result_textbox.get("1.0", "end-1c").split(",")):
+            MessageBox.show_info("Guardado", "Resultados guardados en la base de datos.")
+        else:
+            MessageBox.show_error("Error", "No se pudieron guardar los resultados en la base de datos.")

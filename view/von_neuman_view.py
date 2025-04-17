@@ -104,4 +104,9 @@ class VonNeumannView:
         self.result_textbox = tk.Text(right_frame, height=self.TEXTBOX_HEIGHT, width=self.TEXTBOX_WIDTH, wrap="word", state=tk.DISABLED)
         self.result_textbox.pack(fill=tk.BOTH, expand=True, pady=(10, 0))
 
+        self.save_button = tk.Button(right_frame, text="Guardar", bg="#DCDCDC", state=tk.DISABLED)
+        if hasattr(self.controller, 'on_save_results_vn'):
+            self.save_button.config(command=self.controller.on_save_results_vn)
+        self.save_button.pack(anchor="center", pady=10)
+
         return right_frame

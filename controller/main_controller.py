@@ -47,6 +47,9 @@ class MainController:
         self.main_service.paste_result(random_numbers, self.vn_view.result_textbox)
         self.vn_view.generate_button.config(state="normal")  # Habilitar el botón de generar nuevamente
 
+        self.vn_view.chi_radio.config(fg="black")  # Resetear el color del radio button de Chi Cuadrado
+        self.vn_view.rachas_radio.config(fg="black")  # Resetear el color del radio button de Rachas
+
     def on_generate_mixed(self): #REFACTORIZADO
         # Obtener la semilla y los parámetros desde la vista
         seed = self.mxc_view.seed_entry.get()
@@ -72,14 +75,17 @@ class MainController:
         self.main_service.paste_result(random_numbers, self.mxc_view.result_textbox)
         self.mxc_view.generate_button.config(state="normal")
 
+        self.mxc_view.chi_radio.config(fg="black")  # Resetear el color del radio button de Chi Cuadrado
+        self.mxc_view.rachas_radio.config(fg="black")  # Resetear el color del radio button de Rachas
 
-    def on_test_von_neumann(self):
+
+    def on_test_von_neumann(self): #REFACTORIZADO
         # Obtener el tipo de prueba seleccionada
         test_type = self.vn_view.test_type.get()
         view = self.vn_view
         match test_type:
             case "Chi Cuadrado":
-                result = self.main_service.run_chi_square_test(view.result_textbox)
+                result = self.main_service.run_chi_square_test(view.result_textbox, view.test_result_textbox)
                 if result:
                     MessageBox.show_info("Resultado", "La prueba Chi Cuadrado ha pasado.")
                     view.chi_radio.config(fg="green")
@@ -87,9 +93,15 @@ class MainController:
                     MessageBox.show_error("Resultado", "La prueba Chi Cuadrado no ha pasado.")
                     view.chi_radio.config(fg="red")
             case "Rachas":
-                self.run_runs_test(view)
+                result = self.main_service.run_rachas_test(view.result_textbox, view.test_result_textbox)
+                if result:
+                    MessageBox.show_info("Resultado", "La prueba Chi Cuadrado ha pasado.")
+                    view.rachas_radio.config(fg="green")
+                elif result == False:
+                    MessageBox.show_error("Resultado", "La prueba Chi Cuadrado no ha pasado.")
+                    view.rachas_radio.config(fg="red")
 
-    def on_test_mixed(self):
+    def on_test_mixed(self): #REFACTORIZADO
         # Obtener el tipo de prueba seleccionada
         test_type = self.mxc_view.test_type.get()
         view = self.mxc_view
@@ -103,4 +115,10 @@ class MainController:
                     MessageBox.show_error("Resultado", "La prueba Chi Cuadrado no ha pasado.")
                     view.chi_radio.config(fg="red")
             case "Rachas":
-                self.run_runs_test(view)
+                result = self.main_service.run_rachas_test(view.result_textbox, view.test_result_textbox)
+                if result:
+                    MessageBox.show_info("Resultado", "La prueba Chi Cuadrado ha pasado.")
+                    view.rachas_radio.config(fg="green")
+                elif result == False:
+                    MessageBox.show_error("Resultado", "La prueba Chi Cuadrado no ha pasado.")
+                    view.rachas_radio.config(fg="red")

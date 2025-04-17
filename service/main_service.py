@@ -1,4 +1,5 @@
 from view.message_box import MessageBox
+import math
 
 class MainService:
 
@@ -71,7 +72,65 @@ class MainService:
         result_textbox.insert("end", "Frecuencias observadas:\n")
         for i, freq in enumerate(observed_freq):
             result_textbox.insert("end", f"Dígito {i}: {freq}\n")
+        result_textbox.insert("end", f"\nEstadístico Chi Cuadrado: {chi_square_statistic}\n")
+        result_textbox.insert("end", f"Valor crítico: {critical_value}\n")
+        result_textbox.insert("end", f"Resultado: {'Aceptado' if result else 'Rechazado'}\n")
         result_textbox.config(state="disabled")
         result_textbox.see("end")
 
+        return result  # Retornar el resultado de la prueba
+    
+    def run_rachas_test(textbox, result_textbox):
+        # Obtener los números generados desde la vista
+        numbers = textbox.get("1.0", "end-1c").split(",")
+        numbers = [int(num.strip()) for num in numbers if num.strip().isdigit()]
+        n = len(numbers)
+        if n == 0:
+            MessageBox.show_error("Error", "No se han generado números válidos para realizar la prueba.")
+            return
+        
+        # Calcular el número de rachas
+        runs = 1 # Siempre hay al menos una racha
+
+        # Calcular cuantos bits se necesitan para representar el número mas grande
+        max_number = max(numbers)
+        bits = max_number.bit_length() or 1 # Me aseguro de que bits sea al menos 1
+
+        # Convertir los números a binario y contar las rachas (una racha es un cambio de 0 a 1 o de 1 a 0)
+        # Almaceno el bit anterior para compararlo con el actual
+        prev_bit = None
+        for num in numbers:
+            # Convertir el número a binario y rellenar con ceros a la izquierda
+            binary_num = format(num, '0' + str(bits) + 'b')
+            for bit in binary_num:
+                if prev_bit is None or bit != prev_bit:
+                    runs += 1
+                prev_bit = bit
+        
+        # Calcular el número esperado de rachas
+        mu = 1 + (2 * n - 1) / 2 # Número esperado de rachas
+        variance = (n * (n - 2)) / (4 * (n - 1))  if n > 1 else 0 # Varianza de rachas
+        std_dev = math.sqrt(variance) # Desviación estándar de rachas
+
+        # Calcular estadístico Z
+        z = (runs - mu) / std_dev if std_dev != 0 else 0
+
+        # Calcular el valor crítico para el nivel de significancia del 5%
+        critical_value = 1.96  # Valor crítico para Z con alpha = 0.05 (bilateral)
+
+        # Comparar el estadístico Z con el valor crítico
+        if abs(z) < critical_value:
+            result = True
+        else:
+            result = False
+
+        # Mostrar el resultado de la prueba en el textbox
+        result_textbox.config(state="normal")
+        result_textbox.delete(1.0, "end")
+        result_textbox.insert("end", f"Rachas: {runs}\n")
+        result_textbox.insert("end", f"Valor Z: {z}\n")
+        result_textbox.insert("end", f"Valor crítico: {critical_value}\n")
+        result_textbox.insert("end", f"Resultado: {'Aceptado' if result else 'Rechazado'}\n")
+        result_textbox.config(state="disabled")
+        result_textbox.see("end")
         return result  # Retornar el resultado de la prueba

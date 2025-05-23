@@ -17,7 +17,7 @@ class MixedCongruenceService:
             return False
         if (int(seed) <= 0):
             return False
-        if (int(a) <= 0 or int(a) % 2 == 0 or int(a) % 3 == 0 or int(a) % 5 == 0):
+        if (int(a) <= 0):
             return False
         if (int(m) <= 0 or int(m) <= int(a) or int(m) <= int(seed)):
             return False

@@ -5,15 +5,16 @@ from service.von_neuman_service import VonNeumanService  # Importar el servicio 
 from service.mixed_service import MixedCongruenceService  # Importar la función de congruencias mixtas
 
 from view.main_view import MainView
+from view.menu_view import MenuView
 from view.message_box import MessageBox
 import math # Importar la función gcd para calcular el máximo común divisor
 
 class MainController:
     def __init__(self):
         self.model = Database()
-        self.view = MainView(self)  # Inicializa la vista principal
-        self.vn_view = self.view.von_neumann_view  # Vista Von Neumann
-        self.mxc_view = self.view.mixed_congruence_view  # Vista Congruencias Mixtas
+        self.view = MenuView(self)  # Inicializa la vista principal
+        # self.vn_view = self.view.von_neumann_view  # Vista Von Neumann
+        # self.mxc_view = self.view.mixed_congruence_view  # Vista Congruencias Mixtas
 
         self.main_service = MainService # Inicializa el servicio principal
         self.vn_service = VonNeumanService  # Inicializa el servicio de Von Neumann
@@ -25,9 +26,9 @@ class MainController:
         self.mxc_rachas_test = False
     
     def run(self):
-        if not self.model.connection is None:
+        # if not self.model.connection is None:
             # Si la conexión a la base de datos es exitosa, se inicia la vista
-            self.view.run()
+        self.view.run()
 
 
     def on_generate_von_neumann(self): #REFACTORIZADO 

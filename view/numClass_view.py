@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Vista_Marcas.ui'
+# Form implementation generated from reading ui file 'Vista_Marcas1.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -14,18 +14,22 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+        MainWindow.setEnabled(True)
         MainWindow.resize(1080, 720)
         MainWindow.setMinimumSize(QtCore.QSize(1080, 720))
         MainWindow.setMaximumSize(QtCore.QSize(1080, 720))
         MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
-        self.centralwidget.setStyleSheet("background-color: #CCCCCC")
+        self.centralwidget.setEnabled(True)
+        self.centralwidget.setStyleSheet("#centralwidget {\n"
+"    background-color: #BBBBBB\n"
+"}")
         self.centralwidget.setObjectName("centralwidget")
-        self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(0, -1, 201, 721))
-        self.widget.setStyleSheet("background-color:#2A4759")
-        self.widget.setObjectName("widget")
-        self.botonGenerador = QtWidgets.QPushButton(self.widget)
+        self.widgetAside = QtWidgets.QWidget(self.centralwidget)
+        self.widgetAside.setGeometry(QtCore.QRect(0, -1, 201, 721))
+        self.widgetAside.setStyleSheet("background-color:#2A4759")
+        self.widgetAside.setObjectName("widgetAside")
+        self.botonGenerador = QtWidgets.QPushButton(self.widgetAside)
         self.botonGenerador.setEnabled(True)
         self.botonGenerador.setGeometry(QtCore.QRect(-10, 10, 201, 41))
         font = QtGui.QFont()
@@ -50,7 +54,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         self.botonGenerador.setObjectName("botonGenerador")
-        self.botonTests = QtWidgets.QPushButton(self.widget)
+        self.botonTests = QtWidgets.QPushButton(self.widgetAside)
         self.botonTests.setEnabled(True)
         self.botonTests.setGeometry(QtCore.QRect(-10, 60, 201, 41))
         font = QtGui.QFont()
@@ -75,7 +79,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         self.botonTests.setObjectName("botonTests")
-        self.botonDistrib = QtWidgets.QPushButton(self.widget)
+        self.botonDistrib = QtWidgets.QPushButton(self.widgetAside)
         self.botonDistrib.setEnabled(False)
         self.botonDistrib.setGeometry(QtCore.QRect(-10, 110, 201, 41))
         font = QtGui.QFont()
@@ -100,7 +104,7 @@ class Ui_MainWindow(object):
 "    color: #FFFFFF;\n"
 "}")
         self.botonDistrib.setObjectName("botonDistrib")
-        self.botonCerrar = QtWidgets.QPushButton(self.widget)
+        self.botonCerrar = QtWidgets.QPushButton(self.widgetAside)
         self.botonCerrar.setGeometry(QtCore.QRect(0, 680, 201, 41))
         font = QtGui.QFont()
         font.setPointSize(11)
@@ -117,223 +121,152 @@ class Ui_MainWindow(object):
 "    background-color: #EB5B00;\n"
 "}")
         self.botonCerrar.setObjectName("botonCerrar")
-        self.widget_3 = QtWidgets.QWidget(self.centralwidget)
-        self.widget_3.setGeometry(QtCore.QRect(209, 0, 871, 721))
-        self.widget_3.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
-        self.widget_3.setToolTip("")
-        self.widget_3.setToolTipDuration(-1)
-        self.widget_3.setStyleSheet("background-color: #FFFFFF")
-        self.widget_3.setObjectName("widget_3")
-        self.widget_4 = QtWidgets.QWidget(self.widget_3)
-        self.widget_4.setGeometry(QtCore.QRect(0, 0, 871, 61))
-        self.widget_4.setStyleSheet("background-color:#2A4759")
-        self.widget_4.setObjectName("widget_4")
-        self.verticalLayoutWidget = QtWidgets.QWidget(self.widget_4)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 871, 61))
-        self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.label_5 = QtWidgets.QLabel(self.verticalLayoutWidget)
-        font = QtGui.QFont()
-        font.setPointSize(16)
-        self.label_5.setFont(font)
-        self.label_5.setStyleSheet("color: #FFFFFF;")
-        self.label_5.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_5.setObjectName("label_5")
-        self.verticalLayout.addWidget(self.label_5)
-        self.widgetModelo = QtWidgets.QWidget(self.widget_3)
-        self.widgetModelo.setGeometry(QtCore.QRect(10, 80, 241, 71))
-        self.widgetModelo.setStyleSheet("#widgetModelo {\n"
-"    border: 2px solid #F79B72;  /* Borde celeste suave */\n"
-"    border-radius: 5px;         /* Esquinas redondeadas */\n"
-"    padding: 4px;               /* Espaciado interno */\n"
+        self.widgetMainContent = QtWidgets.QWidget(self.centralwidget)
+        self.widgetMainContent.setEnabled(True)
+        self.widgetMainContent.setGeometry(QtCore.QRect(210, 0, 611, 721))
+        self.widgetMainContent.setContextMenuPolicy(QtCore.Qt.NoContextMenu)
+        self.widgetMainContent.setToolTip("")
+        self.widgetMainContent.setToolTipDuration(-1)
+        self.widgetMainContent.setStyleSheet("#widgetMainContent {\n"
+"    background-color: #DDDDDD\n"
 "}")
-        self.widgetModelo.setObjectName("widgetModelo")
-        self.radioRachas = QtWidgets.QRadioButton(self.widgetModelo)
-        self.radioRachas.setGeometry(QtCore.QRect(20, 30, 91, 22))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.radioRachas.setFont(font)
-        self.radioRachas.setChecked(True)
-        self.radioRachas.setObjectName("radioRachas")
-        self.radioChiCuadrado = QtWidgets.QRadioButton(self.widgetModelo)
-        self.radioChiCuadrado.setGeometry(QtCore.QRect(128, 30, 101, 22))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.radioChiCuadrado.setFont(font)
-        self.radioChiCuadrado.setChecked(False)
-        self.radioChiCuadrado.setObjectName("radioChiCuadrado")
-        self.label = QtWidgets.QLabel(self.widget_3)
-        self.label.setGeometry(QtCore.QRect(20, 70, 138, 26))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.label.setFont(font)
-        self.label.setObjectName("label")
-        self.tablaResultados = QtWidgets.QTableView(self.widget_3)
-        self.tablaResultados.setGeometry(QtCore.QRect(270, 80, 591, 541))
-        self.tablaResultados.setStyleSheet("QTableView {\n"
-"    border: 2px solid #F79B72;  /* Borde celeste suave */\n"
-"    border-radius: 5px;         /* Esquinas redondeadas */\n"
-"    padding: 4px;               /* Espaciado interno */\n"
-"}")
-        self.tablaResultados.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustIgnored)
-        self.tablaResultados.setObjectName("tablaResultados")
-        self.widgetClasesOp = QtWidgets.QWidget(self.widget_3)
-        self.widgetClasesOp.setGeometry(QtCore.QRect(10, 430, 241, 101))
-        self.widgetClasesOp.setStyleSheet("#widgetClasesOp {\n"
-"    border: 2px solid #F79B72;  /* Borde celeste suave */\n"
-"    border-radius: 5px;         /* Esquinas redondeadas */\n"
-"    padding: 4px;               /* Espaciado interno */\n"
-"}")
-        self.widgetClasesOp.setObjectName("widgetClasesOp")
-        self.label_11 = QtWidgets.QLabel(self.widgetClasesOp)
-        self.label_11.setGeometry(QtCore.QRect(10, 60, 108, 31))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.label_11.setFont(font)
-        self.label_11.setObjectName("label_11")
-        self.label_10 = QtWidgets.QLabel(self.widgetClasesOp)
-        self.label_10.setGeometry(QtCore.QRect(10, 20, 109, 31))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.label_10.setFont(font)
-        self.label_10.setObjectName("label_10")
-        self.inputNumClases = QtWidgets.QLineEdit(self.widgetClasesOp)
-        self.inputNumClases.setEnabled(True)
-        self.inputNumClases.setGeometry(QtCore.QRect(130, 20, 101, 31))
-        self.inputNumClases.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid #2A4759;\n"
-"    border-radius: 5px;\n"
+        self.widgetMainContent.setObjectName("widgetMainContent")
+        self.labelFrecuencias = QtWidgets.QLabel(self.widgetMainContent)
+        self.labelFrecuencias.setGeometry(QtCore.QRect(10, 430, 591, 31))
+        self.labelFrecuencias.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #2A4759;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
 "    padding: 4px;\n"
-"}\n"
-"\n"
-"QLineEdit:disabled {\n"
-"    border: 2px solid #DDDDDD;\n"
 "}")
-        self.inputNumClases.setObjectName("inputNumClases")
-        self.inputAmpClases = QtWidgets.QLineEdit(self.widgetClasesOp)
-        self.inputAmpClases.setEnabled(True)
-        self.inputAmpClases.setGeometry(QtCore.QRect(130, 60, 101, 31))
-        self.inputAmpClases.setStyleSheet("QLineEdit {\n"
+        self.labelFrecuencias.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelFrecuencias.setObjectName("labelFrecuencias")
+        self.widgetTablaClases = QtWidgets.QWidget(self.widgetMainContent)
+        self.widgetTablaClases.setGeometry(QtCore.QRect(10, 200, 591, 210))
+        self.widgetTablaClases.setMinimumSize(QtCore.QSize(0, 160))
+        self.widgetTablaClases.setStyleSheet("#widgetTablaClases {\n"
 "    border: 2px solid #2A4759;\n"
-"    border-radius: 5px;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
 "    padding: 4px;\n"
-"}\n"
-"\n"
-"QLineEdit:disabled {\n"
-"    border: 2px solid #DDDDDD;\n"
+"    background-color: white;\n"
 "}")
-        self.inputAmpClases.setObjectName("inputAmpClases")
-        self.label_9 = QtWidgets.QLabel(self.widget_3)
-        self.label_9.setGeometry(QtCore.QRect(20, 420, 110, 26))
+        self.widgetTablaClases.setObjectName("widgetTablaClases")
+        self.tablaResClases = QtWidgets.QTableView(self.widgetTablaClases)
+        self.tablaResClases.setGeometry(QtCore.QRect(10, 10, 571, 192))
+        self.tablaResClases.setMinimumSize(QtCore.QSize(0, 150))
+        self.tablaResClases.setStyleSheet("")
+        self.tablaResClases.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.tablaResClases.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.tablaResClases.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.tablaResClases.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustIgnored)
+        self.tablaResClases.setGridStyle(QtCore.Qt.SolidLine)
+        self.tablaResClases.setObjectName("tablaResClases")
+        self.tablaResClases.horizontalHeader().setDefaultSectionSize(120)
+        self.tablaResClases.horizontalHeader().setMinimumSectionSize(120)
+        self.tablaResClases.verticalHeader().setMinimumSectionSize(30)
+        self.labelClases = QtWidgets.QLabel(self.widgetMainContent)
+        self.labelClases.setGeometry(QtCore.QRect(10, 170, 591, 31))
+        self.labelClases.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #2A4759;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}")
+        self.labelClases.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelClases.setObjectName("labelClases")
+        self.widgetTablaFrecuencias = QtWidgets.QWidget(self.widgetMainContent)
+        self.widgetTablaFrecuencias.setGeometry(QtCore.QRect(10, 460, 591, 141))
+        self.widgetTablaFrecuencias.setStyleSheet("#widgetTablaFrecuencias {\n"
+"    border: 2px solid #2A4759;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"    background-color: white;\n"
+"}")
+        self.widgetTablaFrecuencias.setObjectName("widgetTablaFrecuencias")
+        self.tablaResMuestra = QtWidgets.QTableView(self.widgetTablaFrecuencias)
+        self.tablaResMuestra.setGeometry(QtCore.QRect(10, 10, 571, 121))
+        self.tablaResMuestra.setStyleSheet("")
+        self.tablaResMuestra.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.tablaResMuestra.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustIgnored)
+        self.tablaResMuestra.setGridStyle(QtCore.Qt.SolidLine)
+        self.tablaResMuestra.setObjectName("tablaResMuestra")
+        self.tablaResMuestra.horizontalHeader().setDefaultSectionSize(120)
+        self.tablaResMuestra.horizontalHeader().setMinimumSectionSize(120)
+        self.tablaResMuestra.verticalHeader().setMinimumSectionSize(30)
+        self.botonGenerarReporte = QtWidgets.QPushButton(self.widgetMainContent)
+        self.botonGenerarReporte.setEnabled(False)
+        self.botonGenerarReporte.setGeometry(QtCore.QRect(10, 680, 591, 31))
         font = QtGui.QFont()
-        font.setPointSize(10)
-        self.label_9.setFont(font)
-        self.label_9.setObjectName("label_9")
-        self.widget_2 = QtWidgets.QWidget(self.widget_3)
-        self.widget_2.setGeometry(QtCore.QRect(10, 550, 241, 151))
-        self.widget_2.setStyleSheet("#widget_2 {\n"
-"    border: 2px solid #F79B72;  /* Borde celeste suave */\n"
-"    border-radius: 5px;         /* Esquinas redondeadas */\n"
-"    padding: 4px;               /* Espaciado interno */\n"
+        font.setPointSize(9)
+        self.botonGenerarReporte.setFont(font)
+        self.botonGenerarReporte.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.botonGenerarReporte.setStyleSheet("QPushButton {\n"
+"    background-color: #2A4759;\n"
+"    color: #FFFFFF;\n"
+"    border-radius: 5px;\n"
+"    padding: 6px;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #2C3F4C;\n"
+"    color: #F79B72;\n"
+"}\n"
+"QPushButton:disabled{\n"
+"    background-color: #FFFFFF;\n"
+"    border: 2px solid #2A4759;\n"
+"    color: #2A4759;\n"
 "}")
-        self.widget_2.setObjectName("widget_2")
-        self.listaNumGuardados = QtWidgets.QListView(self.widget_2)
-        self.listaNumGuardados.setGeometry(QtCore.QRect(10, 30, 221, 111))
+        self.botonGenerarReporte.setObjectName("botonGenerarReporte")
+        self.labelClases_2 = QtWidgets.QLabel(self.widgetMainContent)
+        self.labelClases_2.setGeometry(QtCore.QRect(10, 10, 591, 31))
+        self.labelClases_2.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #2A4759;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}")
+        self.labelClases_2.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelClases_2.setObjectName("labelClases_2")
+        self.widgetTablaMuestras = QtWidgets.QWidget(self.widgetMainContent)
+        self.widgetTablaMuestras.setGeometry(QtCore.QRect(10, 40, 231, 111))
+        self.widgetTablaMuestras.setStyleSheet("#widgetTablaMuestras {\n"
+"    border: 2px solid #2A4759;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    padding: 4px;\n"
+"    background-color: white;\n"
+"}")
+        self.widgetTablaMuestras.setObjectName("widgetTablaMuestras")
+        self.listaNumGuardados = QtWidgets.QListView(self.widgetTablaMuestras)
+        self.listaNumGuardados.setGeometry(QtCore.QRect(12, 10, 211, 93))
         self.listaNumGuardados.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.listaNumGuardados.setLayoutMode(QtWidgets.QListView.SinglePass)
         self.listaNumGuardados.setModelColumn(0)
         self.listaNumGuardados.setObjectName("listaNumGuardados")
-        self.label_12 = QtWidgets.QLabel(self.widget_3)
-        self.label_12.setGeometry(QtCore.QRect(20, 540, 147, 26))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.label_12.setFont(font)
-        self.label_12.setObjectName("label_12")
-        self.widgetParametros = QtWidgets.QWidget(self.widget_3)
-        self.widgetParametros.setGeometry(QtCore.QRect(10, 180, 241, 221))
-        self.widgetParametros.setStyleSheet("#widgetParametros {\n"
-"    border: 2px solid #F79B72;  /* Borde celeste suave */\n"
-"    border-radius: 5px;         /* Esquinas redondeadas */\n"
-"    padding: 4px;               /* Espaciado interno */\n"
-"}")
-        self.widgetParametros.setObjectName("widgetParametros")
-        self.inputLimInf = QtWidgets.QLineEdit(self.widgetParametros)
-        self.inputLimInf.setEnabled(True)
-        self.inputLimInf.setGeometry(QtCore.QRect(110, 20, 121, 31))
-        self.inputLimInf.setStyleSheet("QLineEdit {\n"
+        self.widgetDetalleMuestra = QtWidgets.QWidget(self.widgetMainContent)
+        self.widgetDetalleMuestra.setGeometry(QtCore.QRect(230, 40, 371, 111))
+        self.widgetDetalleMuestra.setStyleSheet("#widgetDetalleMuestra {\n"
 "    border: 2px solid #2A4759;\n"
-"    border-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
 "    padding: 4px;\n"
-"}\n"
-"\n"
-"QLineEdit:disabled {\n"
-"    border: 2px solid #DDDDDD;\n"
+"    background-color: white;\n"
 "}")
-        self.inputLimInf.setPlaceholderText("")
-        self.inputLimInf.setObjectName("inputLimInf")
-        self.label_8 = QtWidgets.QLabel(self.widgetParametros)
-        self.label_8.setGeometry(QtCore.QRect(10, 20, 91, 31))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.label_8.setFont(font)
-        self.label_8.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
-        self.label_8.setObjectName("label_8")
-        self.line = QtWidgets.QFrame(self.widgetParametros)
-        self.line.setGeometry(QtCore.QRect(10, 100, 221, 16))
-        self.line.setFrameShape(QtWidgets.QFrame.HLine)
-        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.line.setObjectName("line")
-        self.label_2 = QtWidgets.QLabel(self.widgetParametros)
-        self.label_2.setGeometry(QtCore.QRect(10, 130, 91, 31))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.label_2.setFont(font)
-        self.label_2.setObjectName("label_2")
-        self.inputMediaN = QtWidgets.QLineEdit(self.widgetParametros)
-        self.inputMediaN.setEnabled(False)
-        self.inputMediaN.setGeometry(QtCore.QRect(110, 130, 121, 31))
-        self.inputMediaN.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid #2A4759;\n"
-"    border-radius: 5px;\n"
-"    padding: 4px;\n"
-"}\n"
-"\n"
-"QLineEdit:disabled {\n"
-"    border: 2px solid #DDDDDD;\n"
-"}")
-        self.inputMediaN.setPlaceholderText("")
-        self.inputMediaN.setObjectName("inputMediaN")
-        self.inputStDevN = QtWidgets.QLineEdit(self.widgetParametros)
-        self.inputStDevN.setEnabled(False)
-        self.inputStDevN.setGeometry(QtCore.QRect(110, 170, 121, 31))
-        self.inputStDevN.setStyleSheet("QLineEdit {\n"
-"    border: 2px solid #2A4759;\n"
-"    border-radius: 5px;\n"
-"    padding: 4px;\n"
-"}\n"
-"\n"
-"QLineEdit:disabled {\n"
-"    border: 2px solid #DDDDDD;\n"
-"}")
-        self.inputStDevN.setPlaceholderText("")
-        self.inputStDevN.setObjectName("inputStDevN")
-        self.label_3 = QtWidgets.QLabel(self.widgetParametros)
-        self.label_3.setGeometry(QtCore.QRect(8, 170, 91, 31))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.label_3.setFont(font)
-        self.label_3.setObjectName("label_3")
-        self.label_4 = QtWidgets.QLabel(self.widget_3)
-        self.label_4.setGeometry(QtCore.QRect(20, 170, 76, 26))
-        font = QtGui.QFont()
-        font.setPointSize(10)
-        self.label_4.setFont(font)
-        self.label_4.setObjectName("label_4")
-        self.botonGenerarMarcas = QtWidgets.QPushButton(self.widget_3)
+        self.widgetDetalleMuestra.setObjectName("widgetDetalleMuestra")
+        self.detalleMuestraNombre = QtWidgets.QLabel(self.widgetDetalleMuestra)
+        self.detalleMuestraNombre.setGeometry(QtCore.QRect(20, 20, 341, 16))
+        self.detalleMuestraNombre.setObjectName("detalleMuestraNombre")
+        self.detalleMuestraElementos = QtWidgets.QLabel(self.widgetDetalleMuestra)
+        self.detalleMuestraElementos.setGeometry(QtCore.QRect(20, 50, 341, 16))
+        self.detalleMuestraElementos.setObjectName("detalleMuestraElementos")
+        self.detalleMuestraFecha = QtWidgets.QLabel(self.widgetDetalleMuestra)
+        self.detalleMuestraFecha.setGeometry(QtCore.QRect(20, 80, 341, 16))
+        self.detalleMuestraFecha.setObjectName("detalleMuestraFecha")
+        self.botonGenerarMarcas = QtWidgets.QPushButton(self.widgetMainContent)
         self.botonGenerarMarcas.setEnabled(True)
-        self.botonGenerarMarcas.setGeometry(QtCore.QRect(270, 630, 591, 31))
+        self.botonGenerarMarcas.setGeometry(QtCore.QRect(10, 630, 591, 31))
         font = QtGui.QFont()
         font.setPointSize(9)
         self.botonGenerarMarcas.setFont(font)
@@ -354,72 +287,371 @@ class Ui_MainWindow(object):
 "    color: #F79B72;\n"
 "}")
         self.botonGenerarMarcas.setObjectName("botonGenerarMarcas")
-        self.botonGenerarMarcas_2 = QtWidgets.QPushButton(self.widget_3)
-        self.botonGenerarMarcas_2.setEnabled(False)
-        self.botonGenerarMarcas_2.setGeometry(QtCore.QRect(270, 670, 591, 31))
-        font = QtGui.QFont()
-        font.setPointSize(9)
-        self.botonGenerarMarcas_2.setFont(font)
-        self.botonGenerarMarcas_2.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.botonGenerarMarcas_2.setStyleSheet("QPushButton {\n"
-"    background-color: #F79B72;\n"
-"    color: #FFFFFF;\n"
-"    border-radius: 5px;\n"
-"    padding: 6px;\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: #44687F;\n"
-"    color: #F79B72;\n"
-"}\n"
-"QPushButton:disabled{\n"
+        self.labelFrecuencias.raise_()
+        self.widgetTablaClases.raise_()
+        self.labelClases.raise_()
+        self.widgetTablaFrecuencias.raise_()
+        self.botonGenerarReporte.raise_()
+        self.labelClases_2.raise_()
+        self.widgetDetalleMuestra.raise_()
+        self.widgetTablaMuestras.raise_()
+        self.botonGenerarMarcas.raise_()
+        self.widgetSideParameters = QtWidgets.QWidget(self.centralwidget)
+        self.widgetSideParameters.setEnabled(True)
+        self.widgetSideParameters.setGeometry(QtCore.QRect(830, 0, 251, 721))
+        self.widgetSideParameters.setStyleSheet("#widgetSideParameters {\n"
 "    background-color: #FFFFFF;\n"
-"    border: 2px solid #F79B72;\n"
-"    color: #F79B72;\n"
 "}")
-        self.botonGenerarMarcas_2.setObjectName("botonGenerarMarcas_2")
-        self.inputLimSup = QtWidgets.QLineEdit(self.widget_3)
+        self.widgetSideParameters.setObjectName("widgetSideParameters")
+        self.labelOpcionesD = QtWidgets.QLabel(self.widgetSideParameters)
+        self.labelOpcionesD.setGeometry(QtCore.QRect(20, 10, 211, 31))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        font.setBold(False)
+        font.setWeight(50)
+        self.labelOpcionesD.setFont(font)
+        self.labelOpcionesD.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #F79B72;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}")
+        self.labelOpcionesD.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelOpcionesD.setObjectName("labelOpcionesD")
+        self.widgetDistribuciones = QtWidgets.QWidget(self.widgetSideParameters)
+        self.widgetDistribuciones.setGeometry(QtCore.QRect(20, 40, 211, 71))
+        self.widgetDistribuciones.setStyleSheet("#widgetDistribuciones {\n"
+"    border: 2px solid #F79B72;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+".QRadioButton::indicator {\n"
+"    width: 10px;\n"
+"    height: 10px;\n"
+"    border-radius: 7px;\n"
+"    border: 2px solid #F79B72;\n"
+"    background: #F79B72;\n"
+"}\n"
+"\n"
+".QRadioButton::indicator:checked {\n"
+"    border: 2px solid #F79B72;\n"
+"    background: #2A4759;\n"
+"}")
+        self.widgetDistribuciones.setObjectName("widgetDistribuciones")
+        self.radioNormal = QtWidgets.QRadioButton(self.widgetDistribuciones)
+        self.radioNormal.setGeometry(QtCore.QRect(20, 40, 100, 18))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.radioNormal.setFont(font)
+        self.radioNormal.setChecked(True)
+        self.radioNormal.setObjectName("radioNormal")
+        self.radioBernoulli = QtWidgets.QRadioButton(self.widgetDistribuciones)
+        self.radioBernoulli.setGeometry(QtCore.QRect(20, 10, 127, 18))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.radioBernoulli.setFont(font)
+        self.radioBernoulli.setStyleSheet("")
+        self.radioBernoulli.setChecked(False)
+        self.radioBernoulli.setObjectName("radioBernoulli")
+        self.labelParametros = QtWidgets.QLabel(self.widgetSideParameters)
+        self.labelParametros.setGeometry(QtCore.QRect(20, 120, 211, 31))
+        self.labelParametros.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #F79B72;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}")
+        self.labelParametros.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelParametros.setObjectName("labelParametros")
+        self.widgetParametros = QtWidgets.QWidget(self.widgetSideParameters)
+        self.widgetParametros.setGeometry(QtCore.QRect(20, 150, 211, 161))
+        self.widgetParametros.setStyleSheet("#widgetParametros {\n"
+"    border: 2px solid #F79B72;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}")
+        self.widgetParametros.setObjectName("widgetParametros")
+        self.inputLimSup = QtWidgets.QLineEdit(self.widgetParametros)
         self.inputLimSup.setEnabled(True)
-        self.inputLimSup.setGeometry(QtCore.QRect(120, 240, 121, 31))
-        self.inputLimSup.setStyleSheet("QLineEdit {\n"
+        self.inputLimSup.setGeometry(QtCore.QRect(10, 40, 191, 31))
+        self.inputLimSup.setStyleSheet(".QLineEdit {\n"
 "    border: 2px solid #2A4759;\n"
-"    border-radius: 5px;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
 "    padding: 4px;\n"
 "}\n"
 "\n"
-"QLineEdit:disabled {\n"
+".QLineEdit:disabled {\n"
 "    border: 2px solid #DDDDDD;\n"
 "}")
-        self.inputLimSup.setPlaceholderText("")
+        self.inputLimSup.setText("")
+        self.inputLimSup.setAlignment(QtCore.Qt.AlignCenter)
         self.inputLimSup.setObjectName("inputLimSup")
-        self.label_7 = QtWidgets.QLabel(self.widget_3)
-        self.label_7.setGeometry(QtCore.QRect(20, 240, 91, 31))
+        self.label_7 = QtWidgets.QLabel(self.widgetParametros)
+        self.label_7.setGeometry(QtCore.QRect(10, 20, 191, 21))
         font = QtGui.QFont()
-        font.setPointSize(10)
+        font.setPointSize(8)
         self.label_7.setFont(font)
-        self.label_7.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_7.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #2A4759;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}")
+        self.label_7.setAlignment(QtCore.Qt.AlignCenter)
         self.label_7.setObjectName("label_7")
-        self.widget_4.raise_()
-        self.widgetModelo.raise_()
-        self.tablaResultados.raise_()
-        self.widgetClasesOp.raise_()
-        self.label_9.raise_()
-        self.widget_2.raise_()
-        self.label_12.raise_()
-        self.label.raise_()
-        self.widgetParametros.raise_()
-        self.label_4.raise_()
-        self.botonGenerarMarcas.raise_()
-        self.botonGenerarMarcas_2.raise_()
-        self.inputLimSup.raise_()
-        self.label_7.raise_()
+        self.label_8 = QtWidgets.QLabel(self.widgetParametros)
+        self.label_8.setGeometry(QtCore.QRect(10, 90, 191, 21))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.label_8.setFont(font)
+        self.label_8.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #2A4759;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}")
+        self.label_8.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_8.setObjectName("label_8")
+        self.inputLimInf = QtWidgets.QLineEdit(self.widgetParametros)
+        self.inputLimInf.setEnabled(True)
+        self.inputLimInf.setGeometry(QtCore.QRect(10, 110, 191, 31))
+        self.inputLimInf.setStyleSheet(".QLineEdit {\n"
+"    border: 2px solid #2A4759;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+".QLineEdit:disabled {\n"
+"    border: 2px solid #DDDDDD;\n"
+"}")
+        self.inputLimInf.setText("")
+        self.inputLimInf.setAlignment(QtCore.Qt.AlignCenter)
+        self.inputLimInf.setObjectName("inputLimInf")
+        self.labelParamNormal = QtWidgets.QLabel(self.widgetSideParameters)
+        self.labelParamNormal.setEnabled(True)
+        self.labelParamNormal.setGeometry(QtCore.QRect(20, 320, 211, 31))
+        self.labelParamNormal.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #F79B72;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+".QLabel:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"    background-color: #CCCCCC;\n"
+"    color: #777777\n"
+"}\n"
+"")
+        self.labelParamNormal.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelParamNormal.setObjectName("labelParamNormal")
+        self.widgetParametrosNormal = QtWidgets.QWidget(self.widgetSideParameters)
+        self.widgetParametrosNormal.setEnabled(True)
+        self.widgetParametrosNormal.setGeometry(QtCore.QRect(20, 350, 211, 161))
+        self.widgetParametrosNormal.setStyleSheet("#widgetParametrosNormal {\n"
+"    border: 2px solid #F79B72;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"#widgetParametrosNormal:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"}")
+        self.widgetParametrosNormal.setObjectName("widgetParametrosNormal")
+        self.label_9 = QtWidgets.QLabel(self.widgetParametrosNormal)
+        self.label_9.setEnabled(True)
+        self.label_9.setGeometry(QtCore.QRect(10, 20, 191, 21))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.label_9.setFont(font)
+        self.label_9.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #2A4759;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+".QLabel:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"    background-color: #CCCCCC;\n"
+"    color: #777777\n"
+"}")
+        self.label_9.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_9.setObjectName("label_9")
+        self.inputMediaN = QtWidgets.QLineEdit(self.widgetParametrosNormal)
+        self.inputMediaN.setGeometry(QtCore.QRect(10, 40, 191, 31))
+        self.inputMediaN.setStyleSheet(".QLineEdit {\n"
+"    border: 2px solid #2A4759;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+".QLineEdit:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"}")
+        self.inputMediaN.setAlignment(QtCore.Qt.AlignCenter)
+        self.inputMediaN.setObjectName("inputMediaN")
+        self.inputStDevN = QtWidgets.QLineEdit(self.widgetParametrosNormal)
+        self.inputStDevN.setEnabled(True)
+        self.inputStDevN.setGeometry(QtCore.QRect(10, 110, 191, 31))
+        self.inputStDevN.setStyleSheet(".QLineEdit {\n"
+"    border: 2px solid #2A4759;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+".QLineEdit:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"}")
+        self.inputStDevN.setAlignment(QtCore.Qt.AlignCenter)
+        self.inputStDevN.setObjectName("inputStDevN")
+        self.label_10 = QtWidgets.QLabel(self.widgetParametrosNormal)
+        self.label_10.setGeometry(QtCore.QRect(10, 90, 191, 21))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.label_10.setFont(font)
+        self.label_10.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #2A4759;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+".QLabel:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"    background-color: #CCCCCC;\n"
+"    color: #777777\n"
+"}")
+        self.label_10.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_10.setObjectName("label_10")
+        self.labelOpcClases = QtWidgets.QLabel(self.widgetSideParameters)
+        self.labelOpcClases.setEnabled(True)
+        self.labelOpcClases.setGeometry(QtCore.QRect(20, 520, 211, 31))
+        self.labelOpcClases.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #F79B72;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+".QLabel:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"    background-color: #CCCCCC;\n"
+"    color: #777777\n"
+"}\n"
+"")
+        self.labelOpcClases.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelOpcClases.setObjectName("labelOpcClases")
+        self.widgetParametrosClase = QtWidgets.QWidget(self.widgetSideParameters)
+        self.widgetParametrosClase.setEnabled(True)
+        self.widgetParametrosClase.setGeometry(QtCore.QRect(20, 550, 211, 161))
+        self.widgetParametrosClase.setStyleSheet("#widgetParametrosClase {\n"
+"    border: 2px solid #F79B72;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+"#widgetParametrosClase:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"}")
+        self.widgetParametrosClase.setObjectName("widgetParametrosClase")
+        self.label_13 = QtWidgets.QLabel(self.widgetParametrosClase)
+        self.label_13.setEnabled(True)
+        self.label_13.setGeometry(QtCore.QRect(10, 20, 191, 21))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.label_13.setFont(font)
+        self.label_13.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #2A4759;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+".QLabel:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"    background-color: #CCCCCC;\n"
+"    color: #777777\n"
+"}")
+        self.label_13.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_13.setObjectName("label_13")
+        self.inputNumClases = QtWidgets.QLineEdit(self.widgetParametrosClase)
+        self.inputNumClases.setGeometry(QtCore.QRect(10, 40, 191, 31))
+        self.inputNumClases.setStyleSheet(".QLineEdit {\n"
+"    border: 2px solid #2A4759;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+".QLineEdit:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"}")
+        self.inputNumClases.setAlignment(QtCore.Qt.AlignCenter)
+        self.inputNumClases.setObjectName("inputNumClases")
+        self.inputAmpClases = QtWidgets.QLineEdit(self.widgetParametrosClase)
+        self.inputAmpClases.setEnabled(True)
+        self.inputAmpClases.setGeometry(QtCore.QRect(10, 110, 191, 31))
+        self.inputAmpClases.setStyleSheet(".QLineEdit {\n"
+"    border: 2px solid #2A4759;\n"
+"    border-bottom-left-radius: 5px;\n"
+"    border-bottom-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+".QLineEdit:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"}")
+        self.inputAmpClases.setAlignment(QtCore.Qt.AlignCenter)
+        self.inputAmpClases.setObjectName("inputAmpClases")
+        self.label_14 = QtWidgets.QLabel(self.widgetParametrosClase)
+        self.label_14.setGeometry(QtCore.QRect(10, 90, 191, 21))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.label_14.setFont(font)
+        self.label_14.setStyleSheet(".QLabel {\n"
+"    color: #FFFFFF;\n"
+"    background-color: #2A4759;\n"
+"    border-top-left-radius: 5px;\n"
+"    border-top-right-radius: 5px;\n"
+"    padding: 4px;\n"
+"}\n"
+"\n"
+".QLabel:disabled {\n"
+"    border: 2px solid #CCCCCC;\n"
+"    background-color: #CCCCCC;\n"
+"    color: #777777\n"
+"}")
+        self.label_14.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_14.setObjectName("label_14")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.botonCerrar.clicked.connect(MainWindow.close) # type: ignore
-        self.radioChiCuadrado.clicked['bool'].connect(self.inputMediaN.setEnabled) # type: ignore
-        self.radioChiCuadrado.clicked['bool'].connect(self.inputStDevN.setEnabled) # type: ignore
-        self.radioRachas.clicked['bool'].connect(self.inputMediaN.setDisabled) # type: ignore
-        self.radioRachas.clicked['bool'].connect(self.inputStDevN.setDisabled) # type: ignore
+        self.radioBernoulli.clicked['bool'].connect(self.labelParamNormal.setDisabled) # type: ignore
+        self.radioBernoulli.clicked['bool'].connect(self.widgetParametrosNormal.setDisabled) # type: ignore
+        self.radioNormal.clicked['bool'].connect(self.labelParamNormal.setEnabled) # type: ignore
+        self.radioNormal.clicked['bool'].connect(self.widgetParametrosNormal.setEnabled) # type: ignore
+        self.radioBernoulli.clicked['bool'].connect(self.labelOpcClases.setDisabled) # type: ignore
+        self.radioBernoulli.clicked['bool'].connect(self.widgetParametrosClase.setDisabled) # type: ignore
+        self.radioNormal.clicked['bool'].connect(self.labelOpcClases.setEnabled) # type: ignore
+        self.radioNormal.clicked['bool'].connect(self.widgetParametrosClase.setEnabled) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -429,23 +661,32 @@ class Ui_MainWindow(object):
         self.botonTests.setText(_translate("MainWindow", "Tests"))
         self.botonDistrib.setText(_translate("MainWindow", "Distribuciones"))
         self.botonCerrar.setText(_translate("MainWindow", "Cerrar"))
-        self.label_5.setText(_translate("MainWindow", "Generador de Marcas de Clase"))
-        self.radioRachas.setText(_translate("MainWindow", "Bernoulli"))
-        self.radioChiCuadrado.setText(_translate("MainWindow", "Normal"))
-        self.label.setText(_translate("MainWindow", "Modelo de distribución"))
-        self.label_11.setText(_translate("MainWindow", "Amplitud de Clase:"))
-        self.label_10.setText(_translate("MainWindow", "Numero de Clases:"))
-        self.inputNumClases.setPlaceholderText(_translate("MainWindow", "Auto"))
-        self.inputAmpClases.setPlaceholderText(_translate("MainWindow", "Auto"))
-        self.label_9.setText(_translate("MainWindow", "Clases (Opcional)"))
-        self.label_12.setText(_translate("MainWindow", "Selección de la muestra"))
-        self.label_8.setText(_translate("MainWindow", "Lim. Inferior: "))
-        self.label_2.setText(_translate("MainWindow", "Media (μ):"))
-        self.label_3.setText(_translate("MainWindow", "Desvío Est. (σ):"))
-        self.label_4.setText(_translate("MainWindow", "Parámetros"))
+        self.labelFrecuencias.setText(_translate("MainWindow", "Tabla de Frecuencias"))
+        self.labelClases.setText(_translate("MainWindow", "Tabla de Clases"))
+        self.botonGenerarReporte.setText(_translate("MainWindow", "Crear Reporte"))
+        self.labelClases_2.setText(_translate("MainWindow", "Muestras Disponibles"))
+        self.detalleMuestraNombre.setText(_translate("MainWindow", "Nombre de la muestra: (No seleccionada)"))
+        self.detalleMuestraElementos.setText(_translate("MainWindow", "Cantidad de elementos: (No seleccionada)"))
+        self.detalleMuestraFecha.setText(_translate("MainWindow", "Fecha: (No seleccionada)"))
         self.botonGenerarMarcas.setText(_translate("MainWindow", "Generar Marcas"))
-        self.botonGenerarMarcas_2.setText(_translate("MainWindow", "Exportar Datos"))
-        self.label_7.setText(_translate("MainWindow", "Lim. Superior: "))
+        self.labelOpcionesD.setText(_translate("MainWindow", "Opciones de Distribución"))
+        self.radioNormal.setText(_translate("MainWindow", "Dist. Normal"))
+        self.radioBernoulli.setText(_translate("MainWindow", "Dist. de Bernoulli"))
+        self.labelParametros.setText(_translate("MainWindow", "Parámetros del Escenario"))
+        self.inputLimSup.setPlaceholderText(_translate("MainWindow", "Número más grande"))
+        self.label_7.setText(_translate("MainWindow", "Lim. Superior "))
+        self.label_8.setText(_translate("MainWindow", "Lim. Inferior"))
+        self.inputLimInf.setPlaceholderText(_translate("MainWindow", "Número más pequeño"))
+        self.labelParamNormal.setText(_translate("MainWindow", "Parámetros de la Distribución Normal"))
+        self.label_9.setText(_translate("MainWindow", "Media (μ)"))
+        self.inputMediaN.setPlaceholderText(_translate("MainWindow", "Media de la distribución"))
+        self.inputStDevN.setPlaceholderText(_translate("MainWindow", "Media de la distribución"))
+        self.label_10.setText(_translate("MainWindow", "Desvío Est. (σ)"))
+        self.labelOpcClases.setText(_translate("MainWindow", "Parámetros Opcionales de Clase"))
+        self.label_13.setText(_translate("MainWindow", "Número de Clases (K)"))
+        self.inputNumClases.setPlaceholderText(_translate("MainWindow", "Selección Automática"))
+        self.inputAmpClases.setPlaceholderText(_translate("MainWindow", "Selección Automática"))
+        self.label_14.setText(_translate("MainWindow", "Salto de Intervalos (A)"))
 
 
 if __name__ == "__main__":

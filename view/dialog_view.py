@@ -17,9 +17,12 @@ class Ui_Dialog(object):
         Dialog.resize(400, 200)
         Dialog.setMinimumSize(QtCore.QSize(400, 200))
         Dialog.setMaximumSize(QtCore.QSize(400, 200))
+        Dialog.setStyleSheet("#Dialog {\n"
+"        background-color: #222222;\n"
+"}")
         self.widgetTitulo = QtWidgets.QWidget(Dialog)
         self.widgetTitulo.setGeometry(QtCore.QRect(0, 0, 401, 61))
-        self.widgetTitulo.setStyleSheet("background-color: #2A4759;")
+        self.widgetTitulo.setStyleSheet("background-color: #6ac3b3;")
         self.widgetTitulo.setObjectName("widgetTitulo")
         self.verticalLayoutWidget = QtWidgets.QWidget(Dialog)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 401, 61))
@@ -43,15 +46,17 @@ class Ui_Dialog(object):
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.botonOk = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
         self.botonOk.setStyleSheet("QPushButton {\n"
-"    background-color: #F79B72;\n"
 "    color: #FFFFFF;\n"
+"    border: 2px solid #6ac3b3;\n"
+"    background-color: #6ac3b3;\n"
 "    border-radius: 5px;\n"
 "    padding: 6px;\n"
 "}\n"
-"\n"
 "QPushButton:pressed {\n"
-"    background-color: #44687F;  /* color al presionar */\n"
-"}")
+"    background-color: #077A7D;\n"
+"    border: 2px solid #077A7D;\n"
+"}\n"
+"")
         self.botonOk.setObjectName("botonOk")
         self.verticalLayout_2.addWidget(self.botonOk)
         self.verticalLayoutWidget_3 = QtWidgets.QWidget(Dialog)
@@ -61,6 +66,7 @@ class Ui_Dialog(object):
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.errorLabel = QtWidgets.QLabel(self.verticalLayoutWidget_3)
+        self.errorLabel.setStyleSheet("color: white;")
         self.errorLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.errorLabel.setObjectName("errorLabel")
         self.verticalLayout_3.addWidget(self.errorLabel)

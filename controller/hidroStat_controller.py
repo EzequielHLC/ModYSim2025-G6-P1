@@ -3,6 +3,7 @@ from service.hidroStat_service import HidroStatService
 from view.hidroStat_view import Ui_MainWindow
 from PyQt5.QtCore import QStringListModel, Qt
 from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from service.main_service import MainService
 import os
 from datetime import datetime, timedelta
 
@@ -19,6 +20,8 @@ class HidroStatController(QMainWindow):
         self.ui.listaNumGuardados.clicked.connect(self.preview_numbers_and_reset)
         self.ui.botonGenerarMarcas.clicked.connect(self.gen_MarcasClase)
         self.ui.botonGenerarReporte.clicked.connect(self.gen_Report)
+        self.ui.botonVerReportes.clicked.connect(self.open_reportsFolder)
+        self.ui.botonVolver.clicked.connect(self.volver)
 
     def run(self):
         self.show() 
@@ -124,7 +127,7 @@ class HidroStatController(QMainWindow):
         self.ui.tablaResMuestra.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
     def get_GeneratedNumbers(self):
-        data_folder = os.path.join(os.path.dirname(__file__), '..', 'data')
+        data_folder = os.path.join(os.path.dirname(__file__), '..', 'data', 'tested')
         txt_files = [f for f in os.listdir(data_folder) if f.endswith('.txt')]
         model = QStringListModel(txt_files)
         self.ui.listaNumGuardados.setModel(model)
@@ -132,7 +135,7 @@ class HidroStatController(QMainWindow):
     def preview_numbers_and_reset(self):
         selected_file = self.ui.listaNumGuardados.currentIndex().data()
         if selected_file:
-            file_path = os.path.join(os.path.dirname(__file__), '..', 'data', selected_file)
+            file_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'tested', selected_file)
             with open(file_path, 'r') as file:
                 content = file.read()
                 digits = [int(d) for d in content if d.isdigit()]
@@ -191,3 +194,16 @@ class HidroStatController(QMainWindow):
             self.hidroStatService.show_message("Reporte generado exitosamente.", "Éxito")
         else:
             self.hidroStatService.show_message("Error al generar el reporte.", "Error")
+
+    def open_reportsFolder(self):
+        reports_folder = os.path.join(os.path.dirname(__file__), '..', 'data', 'reports')
+        if os.path.exists(reports_folder):
+            os.startfile(reports_folder)
+        else:
+            self.hidroStatService.show_message("La carpeta de reportes no existe.", "Error")
+
+
+    def volver(self):
+        self.gen_window = MainService.show_GenWindow()
+        self.gen_window.show()
+        self.close()

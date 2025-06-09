@@ -1,19 +1,12 @@
+from service.main_service import MainService
 import math
 from scipy.stats import norm
 import os
 import datetime
 import base64
 from io import BytesIO
-from controller.dialogH_controller import DialogController
 
-class HidroStatService:
-
-    def show_message(self, message, title="ATENCIÓN"):
-        # Método para mostrar un mensaje en un cuadro de diálogo
-        dialog = DialogController()
-        dialog.ui.errorLabel.setText(message)
-        dialog.ui.label.setText(title)
-        dialog.run()
+class NumClassService:
 
     def validate_input(self, LimInf, LimSup):
         if not LimInf.isdigit() or not LimSup.isdigit():
@@ -158,35 +151,35 @@ class HidroStatService:
     def exportar_markdown(self, resultado):
         import matplotlib.pyplot as plt
 
-        os.makedirs("./data/reportsHidro", exist_ok=True)
+        os.makedirs("./data/reports", exist_ok=True)
         now = datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")
-        filename = f"./data/reportsHidro/reporteHidro_{now}.md"
+        filename = f"./data/reports/reporte_{now}.md"
 
-        md = f"# 💧 Reporte Hidrológico de Caudales\n"
+        md = f"# 📊 Reporte de Resultados\n"
         md += f"🗓️ **Fecha de generación**: `{now}`\n\n"
         md += "---\n"
 
-        md += "## 📐 Tabla de Rangos de Caudal\n"
-        md += "| 💧 Rango de Caudal (m³/s) | 📍 Marca de Clase (m³/s) | 📊 Prob. Acumulada | 📈 Prob. Rango | 🎲 Rango Índice |\n"
-        md += "|--------------------------|--------------------------|--------------------|----------------|-----------------|\n"
+        md += "## 📐 Tabla de Clases\n"
+        md += "| 🎯 Clase | 📍 Marca de Clase | 📊 Prob. Acumulada | 📈 Prob. Clase | 🎲 Rango Índice |\n"
+        md += "|---------|-------------------|--------------------|----------------|-----------------|\n"
         for i in range(len(resultado["clases"])):
-            rango = f"{resultado['clases'][i][0]} - {resultado['clases'][i][1]}"
+            clase = f"{resultado['clases'][i][0]} - {resultado['clases'][i][1]}"
             marca = resultado["marcas_clase"][i]
             prob_acum = resultado["prob_acumuladas"][i]
             prob_clase = resultado["prob_clase"][i]
-            rango_indice = f"{resultado['rangos_indice'][i][0]} - {resultado['rangos_indice'][i][1]}"
-            md += f"| {rango} | {marca} | {prob_acum:.4f} | {prob_clase:.4f} | {rango_indice} |\n"
+            rango = f"{resultado['rangos_indice'][i][0]} - {resultado['rangos_indice'][i][1]}"
+            md += f"| {clase} | {marca} | {prob_acum:.4f} | {prob_clase:.4f} | {rango} |\n"
 
         md += "\n## 📦 Resultados Obtenidos\n"
-        md += "| 💧 Rango de Caudal (m³/s) | 📦 Frecuencia Observada | 📉 Prob. Observada |\n"
-        md += "|--------------------------|------------------------|-------------------|\n"
+        md += "| 🎯 Clase | 📦 Valores Obtenidos | 📉 Prob. Obtenida |\n"
+        md += "|---------|----------------------|-------------------|\n"
         for i in range(len(resultado["clases"])):
-            rango = f"{resultado['clases'][i][0]} - {resultado['clases'][i][1]}"
+            clase = f"{resultado['clases'][i][0]} - {resultado['clases'][i][1]}"
             valor = resultado["valores_obtenidos"][i]
             prob = resultado["prob_obtenida"][i]
-            md += f"| {rango} | {valor} | {prob:.4f} |\n"
+            md += f"| {clase} | {valor} | {prob:.4f} |\n"
 
-        md += "\n## 📊 Comparación: Probabilidad Esperada vs Observada\n"
+        md += "\n## 📊 Comparación: Probabilidad Esperada vs Obtenida\n"
         try:
             clases_labels = [f"{c[0]}-{c[1]}" for c in resultado["clases"]]
             prob_esperada = resultado["prob_clase"]
@@ -195,11 +188,11 @@ class HidroStatService:
             plt.figure(figsize=(8, 4))
             x = range(len(clases_labels))
             plt.bar(x, prob_esperada, width=0.4, label="Esperada", align='center', alpha=0.7)
-            plt.bar([i + 0.4 for i in x], prob_obtenida, width=0.4, label="Observada", align='center', alpha=0.7)
+            plt.bar([i + 0.4 for i in x], prob_obtenida, width=0.4, label="Obtenida", align='center', alpha=0.7)
             plt.xticks([i + 0.2 for i in x], clases_labels, rotation=45)
-            plt.xlabel("Rango de Caudal (m³/s)")
+            plt.xlabel("Clases")
             plt.ylabel("Probabilidad")
-            plt.title("Probabilidad Esperada vs Observada por Rango de Caudal")
+            plt.title("Probabilidad Esperada vs Obtenida por Clase")
             plt.legend()
             plt.tight_layout()
             plt.gca().yaxis.set_major_formatter(plt.FuncFormatter(lambda y, _: f"{y:.4f}"))
@@ -215,55 +208,27 @@ class HidroStatService:
 
         md += "---\n"
         muestra = resultado.get("muestra_contextual", [])
-        media = resultado.get("media", None)
-        marcas_clase = resultado.get("marcas_clase", [])
-        max_marca = max(marcas_clase) if marcas_clase else None
-        min_marca = min(marcas_clase) if marcas_clase else None
-
         if muestra:
             max_val = max(muestra)
             min_val = min(muestra)
-            pos_max = muestra.index(max_val) + 1  # Día desde 1
-            pos_min = muestra.index(min_val) + 1
-            promedio = round(sum(muestra) / len(muestra), 2)
-            # Cuántas veces se superó la marca de clase más alta
-            veces_sobre_max_marca = sum(1 for v in muestra if max_marca is not None and v > max_marca)
-            # Cuántas veces se superó la media
-            veces_sobre_media = sum(1 for v in muestra if media is not None and v > media)
-            # Cuántas veces estuvo por debajo de la marca de clase más baja
-            veces_bajo_min_marca = sum(1 for v in muestra if min_marca is not None and v < min_marca)
+            pos_max = muestra.index(max_val)
+            pos_min = muestra.index(min_val)
         else:
-            max_val = min_val = pos_max = pos_min = promedio = veces_sobre_max_marca = veces_sobre_media = veces_bajo_min_marca = "N/A"
+            max_val = min_val = pos_max = pos_min = "N/A"
 
         md += "## 📌 Resumen Estadístico de la Muestra\n"
-        md += f"- 🔢 Total de días: `{len(muestra)}`\n"
-        md += f"- 📈 Caudal máximo: `{max_val} m³/s` (día {pos_max})\n"
-        md += f"- 📉 Caudal mínimo: `{min_val} m³/s` (día {pos_min})\n"
-        md += f"- 📊 Promedio de caudal: `{promedio} m³/s`\n"
-        # Cálculo de personas abastecidas
-        if promedio != "N/A":
-            personas_abastecidas_prom = int(round(promedio * 864000))
-            personas_abastecidas_max = int(round(max_val * 864000))
-            personas_abastecidas_min = int(round(min_val * 864000))
-            md += f"- 👥 Cantidad de personas posibles de abastecer por día (promedio): `{personas_abastecidas_prom}`\n"
-            md += f"- 👥 Personas abastecibles el día de mayor caudal: `{personas_abastecidas_max}`\n"
-            md += f"- 👥 Personas abastecibles el día de menor caudal: `{personas_abastecidas_min}`\n"
-        else:
-            md += f"- 👥 Cantidad de personas posibles de abastecer por día (promedio): `N/A`\n"
-            md += f"- 👥 Personas abastecibles el día de mayor caudal: `N/A`\n"
-            md += f"- 👥 Personas abastecibles el día de menor caudal: `N/A`\n"
-        md += f"- 🚩 Días sobre los `{max_marca}` m³/s: `{veces_sobre_max_marca}`\n"
-        md += f"- 🚩 Días sobre la media: `{veces_sobre_media}`\n"
-        md += f"- 🚩 Días bajo los `{min_marca}` m³/s: `{veces_bajo_min_marca}`\n"
+        md += f"- 🔢 Total de elementos: `{len(muestra)}`\n"
+        md += f"- 📈 Valor más alto: `{max_val}` (posición {pos_max})\n"
+        md += f"- 📉 Valor más bajo: `{min_val}` (posición {pos_min})\n"
 
-        md += "\n## 🧪 Muestra Contextual (Caudales diarios en m³/s)\n"
+        md += "\n## 🧪 Muestra Contextual\n"
         if muestra:
             columnas = 10
-            md += "\n| " + " | ".join([f"<span style='color:#2A4759'><b>Día {i+1}</b></span>" for i in range(columnas)]) + " |\n"
+            md += "\n| " + " | ".join([f"<span style='color:#2A4759'><b>Idx {i}</b></span>" for i in range(columnas)]) + " |\n"
             md += "|" + "|".join(["------"] * columnas) + "|\n"
             for i in range(0, len(muestra), columnas):
-                indices = [f"<span style='color:#2A4759'><b>{j+1}</b></span>" for j in range(i, min(i+columnas, len(muestra)))]
-                valores = [f"{muestra[j]} m³/s" for j in range(i, min(i+columnas, len(muestra)))]
+                indices = [f"<span style='color:#2A4759'><b>{j}</b></span>" for j in range(i, min(i+columnas, len(muestra)))]
+                valores = [str(muestra[j]) for j in range(i, min(i+columnas, len(muestra)))]
                 while len(indices) < columnas:
                     indices.append("")
                     valores.append("")

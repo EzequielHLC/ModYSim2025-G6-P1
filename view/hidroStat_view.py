@@ -91,6 +91,15 @@ class Ui_MainWindow(object):
 "}")
         self.titleLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.titleLabel.setObjectName("titleLabel")
+        self.botonVolver = QtWidgets.QPushButton(self.widgetSide)
+        self.botonVolver.setGeometry(QtCore.QRect(1030, 10, 41, 51))
+        self.botonVolver.setText("")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/arrow-right-circle.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.botonVolver.setIcon(icon)
+        self.botonVolver.setIconSize(QtCore.QSize(30, 30))
+        self.botonVolver.setFlat(True)
+        self.botonVolver.setObjectName("botonVolver")
         self.widgetMain = QtWidgets.QWidget(self.centralwidget)
         self.widgetMain.setGeometry(QtCore.QRect(0, 70, 1081, 651))
         self.widgetMain.setStyleSheet("#widgetMain {\n"
@@ -167,27 +176,23 @@ class Ui_MainWindow(object):
         self.labelFrecuencias.setObjectName("labelFrecuencias")
         self.botonGenerarReporte = QtWidgets.QPushButton(self.widgetMain)
         self.botonGenerarReporte.setEnabled(True)
-        self.botonGenerarReporte.setGeometry(QtCore.QRect(30, 600, 491, 31))
+        self.botonGenerarReporte.setGeometry(QtCore.QRect(30, 560, 491, 31))
         font = QtGui.QFont()
         font.setPointSize(9)
         self.botonGenerarReporte.setFont(font)
         self.botonGenerarReporte.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.botonGenerarReporte.setStyleSheet("QPushButton {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #888888;\n"
-"    background-color: #888888;\n"
+"    border: 2px solid #4B8C80;\n"
+"    background-color: #4B8C80;\n"
 "    border-radius: 5px;\n"
 "    padding: 6px;\n"
 "}\n"
 "QPushButton:pressed {\n"
-"    background-color: #44687F;\n"
-"    color: #F79B72;\n"
+"    background-color: #077A7D;\n"
+"    border: 2px solid #077A7D;\n"
 "}\n"
-"QPushButton:disabled{\n"
-"    background-color: #FFFFFF;\n"
-"    border: 2px solid #F79B72;\n"
-"    color: #F79B72;\n"
-"}")
+"")
         self.botonGenerarReporte.setObjectName("botonGenerarReporte")
         self.widgetOpt = QtWidgets.QWidget(self.widgetMain)
         self.widgetOpt.setGeometry(QtCore.QRect(550, 0, 531, 651))
@@ -204,8 +209,8 @@ class Ui_MainWindow(object):
         self.botonGenerarMarcas.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.botonGenerarMarcas.setStyleSheet("QPushButton {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
-"    background-color: #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
+"    background-color: #4B8C80;\n"
 "    border-radius: 5px;\n"
 "    padding: 6px;\n"
 "}\n"
@@ -229,8 +234,8 @@ class Ui_MainWindow(object):
         self.widgetDetalleMuestra = QtWidgets.QWidget(self.widgetOpt)
         self.widgetDetalleMuestra.setGeometry(QtCore.QRect(250, 50, 251, 111))
         self.widgetDetalleMuestra.setStyleSheet("#widgetDetalleMuestra {\n"
-"    border: 2px solid #6ac3b3;\n"
-"    border-bottom-right-radius: 5px;\n"
+"    border: 2px solid #4B8C80;\n"
+"    border-radius: 5px;\n"
 "    padding: 4px;\n"
 "    background-color: #222222;\n"
 "}\n"
@@ -251,7 +256,7 @@ class Ui_MainWindow(object):
         self.widgetTablaMuestras = QtWidgets.QWidget(self.widgetOpt)
         self.widgetTablaMuestras.setGeometry(QtCore.QRect(30, 50, 221, 111))
         self.widgetTablaMuestras.setStyleSheet("#widgetTablaMuestras {\n"
-"    border: 2px solid #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
 "    border-bottom-left-radius: 5px;\n"
 "    padding: 4px;\n"
 "    color: white;\n"
@@ -274,7 +279,7 @@ class Ui_MainWindow(object):
         self.labelClases_2.setGeometry(QtCore.QRect(30, 20, 471, 31))
         self.labelClases_2.setStyleSheet(".QLabel {\n"
 "    color: #FFFFFF;\n"
-"    background-color: #6ac3b3;\n"
+"    background-color: #4B8C80;\n"
 "    border-top-left-radius: 5px;\n"
 "    border-top-right-radius: 5px;\n"
 "    padding: 4px;\n"
@@ -284,7 +289,7 @@ class Ui_MainWindow(object):
         self.widgetParametros = QtWidgets.QWidget(self.widgetOpt)
         self.widgetParametros.setGeometry(QtCore.QRect(30, 240, 471, 311))
         self.widgetParametros.setStyleSheet("#widgetParametros {\n"
-"    border: 2px solid #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
 "    border-bottom-right-radius: 5px;\n"
 "    border-bottom-left-radius: 5px;\n"
 "    padding: 4px;\n"
@@ -300,7 +305,7 @@ class Ui_MainWindow(object):
         self.inputLimSup.setGeometry(QtCore.QRect(220, 40, 171, 41))
         self.inputLimSup.setStyleSheet(".QLineEdit {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
 "    padding: 4px;\n"
 "    background-color: #222222;\n"
 "}")
@@ -317,7 +322,7 @@ class Ui_MainWindow(object):
         self.label_7.setFont(font)
         self.label_7.setStyleSheet(".QLabel {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
 "    border-top-left-radius: 5px;\n"
 "    border-bottom-left-radius: 5px;\n"
 "    padding: 4px;\n"
@@ -334,8 +339,8 @@ class Ui_MainWindow(object):
         self.label_11.setFont(font)
         self.label_11.setStyleSheet(".QLabel {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
-"    background-color: #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
+"    background-color: #4B8C80;\n"
 "    border-top-right-radius: 5px;\n"
 "    border-bottom-right-radius: 5px;\n"
 "    padding: 4px;\n"
@@ -347,7 +352,7 @@ class Ui_MainWindow(object):
         self.inputLimInf.setGeometry(QtCore.QRect(220, 90, 171, 41))
         self.inputLimInf.setStyleSheet(".QLineEdit {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
 "    padding: 4px;\n"
 "    background-color: #222222;\n"
 "}")
@@ -364,8 +369,8 @@ class Ui_MainWindow(object):
         self.label_19.setFont(font)
         self.label_19.setStyleSheet(".QLabel {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
-"    background-color: #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
+"    background-color: #4B8C80;\n"
 "    border-top-right-radius: 5px;\n"
 "    border-bottom-right-radius: 5px;\n"
 "    padding: 4px;\n"
@@ -382,7 +387,7 @@ class Ui_MainWindow(object):
         self.label_20.setFont(font)
         self.label_20.setStyleSheet(".QLabel {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
 "    border-top-left-radius: 5px;\n"
 "    border-bottom-left-radius: 5px;\n"
 "    padding: 4px;\n"
@@ -409,8 +414,8 @@ class Ui_MainWindow(object):
         self.label_21.setFont(font)
         self.label_21.setStyleSheet(".QLabel {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
-"    background-color: #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
+"    background-color: #4B8C80;\n"
 "    border-top-right-radius: 5px;\n"
 "    border-bottom-right-radius: 5px;\n"
 "    padding: 4px;\n"
@@ -422,7 +427,7 @@ class Ui_MainWindow(object):
         self.inputMediaN.setGeometry(QtCore.QRect(220, 180, 171, 41))
         self.inputMediaN.setStyleSheet(".QLineEdit {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
 "    padding: 4px;\n"
 "    background-color: #222222;\n"
 "}")
@@ -439,7 +444,7 @@ class Ui_MainWindow(object):
         self.label_22.setFont(font)
         self.label_22.setStyleSheet(".QLabel {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
 "    border-top-left-radius: 5px;\n"
 "    border-bottom-left-radius: 5px;\n"
 "    padding: 4px;\n"
@@ -451,7 +456,7 @@ class Ui_MainWindow(object):
         self.inputStDevN.setGeometry(QtCore.QRect(220, 240, 171, 41))
         self.inputStDevN.setStyleSheet(".QLineEdit {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
 "    padding: 4px;\n"
 "    background-color: #222222;\n"
 "}")
@@ -468,7 +473,7 @@ class Ui_MainWindow(object):
         self.label_23.setFont(font)
         self.label_23.setStyleSheet(".QLabel {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
 "    border-top-left-radius: 5px;\n"
 "    border-bottom-left-radius: 5px;\n"
 "    padding: 4px;\n"
@@ -485,8 +490,8 @@ class Ui_MainWindow(object):
         self.label_24.setFont(font)
         self.label_24.setStyleSheet(".QLabel {\n"
 "    color: #FFFFFF;\n"
-"    border: 2px solid #6ac3b3;\n"
-"    background-color: #6ac3b3;\n"
+"    border: 2px solid #4B8C80;\n"
+"    background-color: #4B8C80;\n"
 "    border-top-right-radius: 5px;\n"
 "    border-bottom-right-radius: 5px;\n"
 "    padding: 4px;\n"
@@ -505,7 +510,7 @@ class Ui_MainWindow(object):
         self.labelClases_3.setGeometry(QtCore.QRect(30, 210, 471, 31))
         self.labelClases_3.setStyleSheet(".QLabel {\n"
 "    color: #FFFFFF;\n"
-"    background-color: #6ac3b3;\n"
+"    background-color: #4B8C80;\n"
 "    border-top-left-radius: 5px;\n"
 "    border-top-right-radius: 5px;\n"
 "    padding: 4px;\n"
@@ -577,6 +582,25 @@ class Ui_MainWindow(object):
 "}")
         self.label_15.setAlignment(QtCore.Qt.AlignCenter)
         self.label_15.setObjectName("label_15")
+        self.botonVerReportes = QtWidgets.QPushButton(self.widgetMain)
+        self.botonVerReportes.setEnabled(True)
+        self.botonVerReportes.setGeometry(QtCore.QRect(30, 600, 491, 31))
+        font = QtGui.QFont()
+        font.setPointSize(9)
+        self.botonVerReportes.setFont(font)
+        self.botonVerReportes.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.botonVerReportes.setStyleSheet("QPushButton {\n"
+"    color: #FFFFFF;\n"
+"    border: 2px solid #888888;\n"
+"    background-color: #888888;\n"
+"    border-radius: 5px;\n"
+"    padding: 6px;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #666666;\n"
+"    border: 2px solid #666666;\n"
+"}")
+        self.botonVerReportes.setObjectName("botonVerReportes")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -588,7 +612,7 @@ class Ui_MainWindow(object):
         self.titleLabel.setText(_translate("MainWindow", "HidroStat"))
         self.labelClases.setText(_translate("MainWindow", "Reporte de Rangos"))
         self.labelFrecuencias.setText(_translate("MainWindow", "Reporte de la Muestra"))
-        self.botonGenerarReporte.setText(_translate("MainWindow", "Crear Reporte"))
+        self.botonGenerarReporte.setText(_translate("MainWindow", "Crear Nuevo Reporte"))
         self.botonGenerarMarcas.setText(_translate("MainWindow", "Analizar Muestra"))
         self.detalleMuestraNombre.setText(_translate("MainWindow", "Código de Muestreo: (No seleccionada)"))
         self.detalleMuestraElementos.setText(_translate("MainWindow", "Días de Muestra: (No seleccionada)"))
@@ -604,7 +628,7 @@ class Ui_MainWindow(object):
         self.inputMediaN.setPlaceholderText(_translate("MainWindow", "200"))
         self.label_22.setText(_translate("MainWindow", "Media del Caudal"))
         self.inputStDevN.setPlaceholderText(_translate("MainWindow", "30"))
-        self.label_23.setText(_translate("MainWindow", "Media del Caudal"))
+        self.label_23.setText(_translate("MainWindow", "Desvío del Caudal"))
         self.label_24.setText(_translate("MainWindow", "M^3/s"))
         self.label.setText(_translate("MainWindow", "Límites de Caudal:"))
         self.label_2.setText(_translate("MainWindow", "Datos Normales del Caudal:"))
@@ -613,6 +637,8 @@ class Ui_MainWindow(object):
         self.inputAmpClases.setPlaceholderText(_translate("MainWindow", "Selección Automática"))
         self.inputNumClases.setPlaceholderText(_translate("MainWindow", "Selección Automática"))
         self.label_15.setText(_translate("MainWindow", "Número de Clases (K)"))
+        self.botonVerReportes.setText(_translate("MainWindow", "Ver Reportes"))
+import resources.resources_rc as resources_rc
 
 
 if __name__ == "__main__":

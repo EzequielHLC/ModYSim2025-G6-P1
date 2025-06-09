@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Vista_Dialog.ui'
+# Form implementation generated from reading ui file 'Vista_DialogB.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.11
 #
@@ -35,25 +35,6 @@ class Ui_Dialog(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.verticalLayout.addWidget(self.label)
-        self.verticalLayoutWidget_2 = QtWidgets.QWidget(Dialog)
-        self.verticalLayoutWidget_2.setGeometry(QtCore.QRect(0, 160, 401, 41))
-        self.verticalLayoutWidget_2.setObjectName("verticalLayoutWidget_2")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.verticalLayoutWidget_2)
-        self.verticalLayout_2.setContentsMargins(120, 0, 120, 0)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.botonOk = QtWidgets.QPushButton(self.verticalLayoutWidget_2)
-        self.botonOk.setStyleSheet("QPushButton {\n"
-"    background-color: #F79B72;\n"
-"    color: #FFFFFF;\n"
-"    border-radius: 5px;\n"
-"    padding: 6px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #44687F;  /* color al presionar */\n"
-"}")
-        self.botonOk.setObjectName("botonOk")
-        self.verticalLayout_2.addWidget(self.botonOk)
         self.verticalLayoutWidget_3 = QtWidgets.QWidget(Dialog)
         self.verticalLayoutWidget_3.setGeometry(QtCore.QRect(0, 59, 401, 101))
         self.verticalLayoutWidget_3.setObjectName("verticalLayoutWidget_3")
@@ -64,17 +45,57 @@ class Ui_Dialog(object):
         self.errorLabel.setAlignment(QtCore.Qt.AlignCenter)
         self.errorLabel.setObjectName("errorLabel")
         self.verticalLayout_3.addWidget(self.errorLabel)
+        self.horizontalLayoutWidget = QtWidgets.QWidget(Dialog)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, 160, 401, 41))
+        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setContentsMargins(40, 0, 40, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.botonAceptar = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.botonAceptar.setStyleSheet("QPushButton {\n"
+"    background-color: #3bba00;  /* color normal */\n"
+"    color: #FFFFFF;\n"
+"    border-radius: 5px;\n"
+"    padding: 6px;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #267800;  /* color al presionar */\n"
+"}\n"
+"QPushButton:disabled{\n"
+"    background-color: #44687F;\n"
+"    color: #BBBBBB\n"
+"}")
+        self.botonAceptar.setObjectName("botonAceptar")
+        self.horizontalLayout.addWidget(self.botonAceptar)
+        self.botonCancelar = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.botonCancelar.setStyleSheet("QPushButton {\n"
+"    background-color: #EB5B00;  /* color normal */\n"
+"    color: #FFFFFF;\n"
+"    border-radius: 5px;\n"
+"    padding: 6px;\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: #913800;  /* color al presionar */\n"
+"}\n"
+"QPushButton:disabled{\n"
+"    background-color: #44687F;\n"
+"    color: #BBBBBB\n"
+"}")
+        self.botonCancelar.setObjectName("botonCancelar")
+        self.horizontalLayout.addWidget(self.botonCancelar)
 
         self.retranslateUi(Dialog)
-        self.botonOk.clicked.connect(Dialog.accept) # type: ignore
+        self.botonAceptar.clicked.connect(Dialog.accept) # type: ignore
+        self.botonCancelar.clicked.connect(Dialog.reject) # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
         self.label.setText(_translate("Dialog", "ATENCIÓN"))
-        self.botonOk.setText(_translate("Dialog", "Aceptar"))
         self.errorLabel.setText(_translate("Dialog", "Texto"))
+        self.botonAceptar.setText(_translate("Dialog", "Aceptar"))
+        self.botonCancelar.setText(_translate("Dialog", "Cancelar"))
 
 
 if __name__ == "__main__":

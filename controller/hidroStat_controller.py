@@ -196,7 +196,7 @@ class HidroStatController(QMainWindow):
             self.hidroStatService.show_message("Error al generar el reporte.", "Error")
 
     def open_reportsFolder(self):
-        reports_folder = os.path.join(os.path.dirname(__file__), '..', 'data', 'reports')
+        reports_folder = os.path.join(os.path.dirname(__file__), '..', 'data', 'reportsHidro')
         if os.path.exists(reports_folder):
             os.startfile(reports_folder)
         else:
